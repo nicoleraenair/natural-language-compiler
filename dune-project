@@ -5,22 +5,24 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github nicoleraenair/natural-language-compiler))
 
-(authors "Author Name")
+(authors "Nicole Nair")
 
-(maintainers "Maintainer Name")
+(maintainers "Nicole Nair")
 
-(license LICENSE)
+(license NONE)
 
-(documentation https://url/to/documentation)
+(documentation https://github.com/nicoleraenair/natural-language-compiler)
 
 (package
  (name natural_language_compiler)
- (synopsis "A short synopsis")
- (description "A longer description")
+ (synopsis "Compiler from natural language to predicate logic and lambda calculus representation")
+ (description "")
  (depends ocaml dune)
  (tags
   (topics "to describe" your project)))
+
+(using menhir 2.1)
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project

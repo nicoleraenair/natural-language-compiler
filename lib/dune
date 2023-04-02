@@ -1,2 +1,9 @@
+(menhir
+ (modules parser))
+
+(ocamllex lexer)
+
 (library
- (name natural_language_compiler))
+ (name natural_language_compiler)
+ (modules parser lexer asts)
+ (libraries core))

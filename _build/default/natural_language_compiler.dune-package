@@ -1,4 +1,4 @@
-(lang dune 3.6)
+(lang dune 3.7)
 (name natural_language_compiler)
 (sections (lib .) (bin ../../bin))
 (files (lib (META dune-package opam)) (bin (natural_language_compiler)))
