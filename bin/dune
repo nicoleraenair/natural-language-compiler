@@ -1,0 +1,4 @@
+(executable
+ (public_name natural_language_compiler)
+ (name main)
+ (libraries natural_language_compiler))
