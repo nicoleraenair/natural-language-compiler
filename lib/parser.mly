@@ -1,8 +1,5 @@
-(*declarations, including token and type specifications, precedence directives, and other output directives*)
-
 %token <int> INT
 %token <float> FLOAT
-%token <string> ID
 %token <string> STRING
 %token TRUE
 %token FALSE
@@ -39,6 +36,3 @@ obj_field:
 
 list_fields:
     vl = separated_list(COMMA, value)         { vl } ;
-
-
-(*grammar of the language to be parsed*)

@@ -1,0 +1,1 @@
+(* prints simplified lambda expression *)

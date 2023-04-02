@@ -1,4 +1,4 @@
 (executable
  (public_name natural_language_compiler)
  (name main)
- (libraries natural_language_compiler core core_unix.command_unix))
+ (libraries compiler core core_unix.command_unix))

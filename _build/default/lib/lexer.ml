@@ -148,82 +148,82 @@ let rec read lexbuf =
 and __ocaml_lex_read_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 18 "lib/lexer.mll"
+# 21 "lib/lexer.mll"
              ( read lexbuf )
 # 154 "lib/lexer.ml"
 
   | 1 ->
-# 19 "lib/lexer.mll"
+# 22 "lib/lexer.mll"
              ( Lexing.new_line lexbuf; read lexbuf )
 # 159 "lib/lexer.ml"
 
   | 2 ->
-# 20 "lib/lexer.mll"
+# 23 "lib/lexer.mll"
              ( INT (int_of_string (Lexing.lexeme lexbuf)) )
 # 164 "lib/lexer.ml"
 
   | 3 ->
-# 21 "lib/lexer.mll"
+# 24 "lib/lexer.mll"
              ( FLOAT (float_of_string (Lexing.lexeme lexbuf)) )
 # 169 "lib/lexer.ml"
 
   | 4 ->
-# 22 "lib/lexer.mll"
+# 25 "lib/lexer.mll"
              ( TRUE )
 # 174 "lib/lexer.ml"
 
   | 5 ->
-# 23 "lib/lexer.mll"
+# 26 "lib/lexer.mll"
              ( FALSE )
 # 179 "lib/lexer.ml"
 
   | 6 ->
-# 24 "lib/lexer.mll"
+# 27 "lib/lexer.mll"
              ( NULL )
 # 184 "lib/lexer.ml"
 
   | 7 ->
-# 25 "lib/lexer.mll"
+# 28 "lib/lexer.mll"
              ( read_string (Buffer.create 17) lexbuf )
 # 189 "lib/lexer.ml"
 
   | 8 ->
-# 26 "lib/lexer.mll"
+# 29 "lib/lexer.mll"
              ( LEFT_BRACE )
 # 194 "lib/lexer.ml"
 
   | 9 ->
-# 27 "lib/lexer.mll"
+# 30 "lib/lexer.mll"
              ( RIGHT_BRACE )
 # 199 "lib/lexer.ml"
 
   | 10 ->
-# 28 "lib/lexer.mll"
+# 31 "lib/lexer.mll"
              ( LEFT_BRACK )
 # 204 "lib/lexer.ml"
 
   | 11 ->
-# 29 "lib/lexer.mll"
+# 32 "lib/lexer.mll"
              ( RIGHT_BRACK )
 # 209 "lib/lexer.ml"
 
   | 12 ->
-# 30 "lib/lexer.mll"
+# 33 "lib/lexer.mll"
              ( COLON )
 # 214 "lib/lexer.ml"
 
   | 13 ->
-# 31 "lib/lexer.mll"
+# 34 "lib/lexer.mll"
              ( COMMA )
 # 219 "lib/lexer.ml"
 
   | 14 ->
-# 32 "lib/lexer.mll"
+# 35 "lib/lexer.mll"
       ( raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) )
 # 224 "lib/lexer.ml"
 
   | 15 ->
-# 33 "lib/lexer.mll"
+# 36 "lib/lexer.mll"
              ( EOF )
 # 229 "lib/lexer.ml"
 
@@ -235,59 +235,59 @@ and read_string buf lexbuf =
 and __ocaml_lex_read_string_rec buf lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 36 "lib/lexer.mll"
+# 40 "lib/lexer.mll"
               ( STRING (Buffer.contents buf) )
 # 241 "lib/lexer.ml"
 
   | 1 ->
-# 37 "lib/lexer.mll"
+# 41 "lib/lexer.mll"
               ( Buffer.add_char buf '/'; read_string buf lexbuf )
 # 246 "lib/lexer.ml"
 
   | 2 ->
-# 38 "lib/lexer.mll"
+# 42 "lib/lexer.mll"
               ( Buffer.add_char buf '\\'; read_string buf lexbuf )
 # 251 "lib/lexer.ml"
 
   | 3 ->
-# 39 "lib/lexer.mll"
+# 43 "lib/lexer.mll"
               ( Buffer.add_char buf '\b'; read_string buf lexbuf )
 # 256 "lib/lexer.ml"
 
   | 4 ->
-# 40 "lib/lexer.mll"
+# 44 "lib/lexer.mll"
               ( Buffer.add_char buf '\012'; read_string buf lexbuf )
 # 261 "lib/lexer.ml"
 
   | 5 ->
-# 41 "lib/lexer.mll"
+# 45 "lib/lexer.mll"
               ( Buffer.add_char buf '\n'; read_string buf lexbuf )
 # 266 "lib/lexer.ml"
 
   | 6 ->
-# 42 "lib/lexer.mll"
+# 46 "lib/lexer.mll"
               ( Buffer.add_char buf '\r'; read_string buf lexbuf )
 # 271 "lib/lexer.ml"
 
   | 7 ->
-# 43 "lib/lexer.mll"
+# 47 "lib/lexer.mll"
               ( Buffer.add_char buf '\t'; read_string buf lexbuf )
 # 276 "lib/lexer.ml"
 
   | 8 ->
-# 45 "lib/lexer.mll"
+# 49 "lib/lexer.mll"
     ( Buffer.add_string buf (Lexing.lexeme lexbuf);
       read_string buf lexbuf
     )
 # 283 "lib/lexer.ml"
 
   | 9 ->
-# 48 "lib/lexer.mll"
+# 52 "lib/lexer.mll"
       ( raise (SyntaxError ("Illegal string character: " ^ Lexing.lexeme lexbuf)) )
 # 288 "lib/lexer.ml"
 
   | 10 ->
-# 49 "lib/lexer.mll"
+# 53 "lib/lexer.mll"
         ( raise (SyntaxError ("String is not terminated")) )
 # 293 "lib/lexer.ml"
 

@@ -4,6 +4,6 @@
 (ocamllex lexer)
 
 (library
- (name natural_language_compiler)
+ (name compiler)
  (modules parser lexer asts)
  (libraries core))

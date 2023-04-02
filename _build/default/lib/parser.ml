@@ -10,7 +10,7 @@ module MenhirBasics = struct
   type token = 
     | TRUE
     | STRING of (
-# 6 "lib/parser.mly"
+# 3 "lib/parser.mly"
        (string)
 # 16 "lib/parser.ml"
   )
@@ -20,19 +20,14 @@ module MenhirBasics = struct
     | LEFT_BRACK
     | LEFT_BRACE
     | INT of (
-# 3 "lib/parser.mly"
+# 1 "lib/parser.mly"
        (int)
 # 26 "lib/parser.ml"
   )
-    | ID of (
-# 5 "lib/parser.mly"
-       (string)
-# 31 "lib/parser.ml"
-  )
     | FLOAT of (
-# 4 "lib/parser.mly"
+# 2 "lib/parser.mly"
        (float)
-# 36 "lib/parser.ml"
+# 31 "lib/parser.ml"
   )
     | FALSE
     | EOF
@@ -99,9 +94,9 @@ and ('s, 'r) _menhir_cell1_LEFT_BRACK =
 
 and ('s, 'r) _menhir_cell1_STRING = 
   | MenhirCell1_STRING of 's * ('s, 'r) _menhir_state * (
-# 6 "lib/parser.mly"
+# 3 "lib/parser.mly"
        (string)
-# 105 "lib/parser.ml"
+# 100 "lib/parser.ml"
 )
 
 and _menhir_box_prog = 
@@ -112,12 +107,12 @@ let _menhir_action_01 =
     let vl = 
 # 229 "<standard.mly>"
     ( xs )
-# 116 "lib/parser.ml"
+# 111 "lib/parser.ml"
      in
     (
-# 41 "lib/parser.mly"
+# 38 "lib/parser.mly"
                                               ( vl )
-# 121 "lib/parser.ml"
+# 116 "lib/parser.ml"
      : (Asts.value list))
 
 let _menhir_action_02 =
@@ -125,7 +120,7 @@ let _menhir_action_02 =
     (
 # 139 "<standard.mly>"
     ( [] )
-# 129 "lib/parser.ml"
+# 124 "lib/parser.ml"
      : ((string * Asts.value) list))
 
 let _menhir_action_03 =
@@ -133,7 +128,7 @@ let _menhir_action_03 =
     (
 # 141 "<standard.mly>"
     ( x )
-# 137 "lib/parser.ml"
+# 132 "lib/parser.ml"
      : ((string * Asts.value) list))
 
 let _menhir_action_04 =
@@ -141,7 +136,7 @@ let _menhir_action_04 =
     (
 # 139 "<standard.mly>"
     ( [] )
-# 145 "lib/parser.ml"
+# 140 "lib/parser.ml"
      : (Asts.value list))
 
 let _menhir_action_05 =
@@ -149,15 +144,15 @@ let _menhir_action_05 =
     (
 # 141 "<standard.mly>"
     ( x )
-# 153 "lib/parser.ml"
+# 148 "lib/parser.ml"
      : (Asts.value list))
 
 let _menhir_action_06 =
   fun k v ->
     (
-# 38 "lib/parser.mly"
+# 35 "lib/parser.mly"
                                               ( (k, v) )
-# 161 "lib/parser.ml"
+# 156 "lib/parser.ml"
      : (string * Asts.value))
 
 let _menhir_action_07 =
@@ -165,28 +160,28 @@ let _menhir_action_07 =
     let obj = 
 # 229 "<standard.mly>"
     ( xs )
-# 169 "lib/parser.ml"
+# 164 "lib/parser.ml"
      in
     (
-# 35 "lib/parser.mly"
+# 32 "lib/parser.mly"
                                               ( obj )
-# 174 "lib/parser.ml"
+# 169 "lib/parser.ml"
      : ((string * Asts.value) list))
 
 let _menhir_action_08 =
   fun v ->
     (
-# 21 "lib/parser.mly"
+# 18 "lib/parser.mly"
               ( Some v )
-# 182 "lib/parser.ml"
+# 177 "lib/parser.ml"
      : (Asts.value option))
 
 let _menhir_action_09 =
   fun () ->
     (
-# 22 "lib/parser.mly"
+# 19 "lib/parser.mly"
               ( None   )
-# 190 "lib/parser.ml"
+# 185 "lib/parser.ml"
      : (Asts.value option))
 
 let _menhir_action_10 =
@@ -194,7 +189,7 @@ let _menhir_action_10 =
     (
 # 238 "<standard.mly>"
     ( [ x ] )
-# 198 "lib/parser.ml"
+# 193 "lib/parser.ml"
      : ((string * Asts.value) list))
 
 let _menhir_action_11 =
@@ -202,7 +197,7 @@ let _menhir_action_11 =
     (
 # 240 "<standard.mly>"
     ( x :: xs )
-# 206 "lib/parser.ml"
+# 201 "lib/parser.ml"
      : ((string * Asts.value) list))
 
 let _menhir_action_12 =
@@ -210,7 +205,7 @@ let _menhir_action_12 =
     (
 # 238 "<standard.mly>"
     ( [ x ] )
-# 214 "lib/parser.ml"
+# 209 "lib/parser.ml"
      : (Asts.value list))
 
 let _menhir_action_13 =
@@ -218,71 +213,71 @@ let _menhir_action_13 =
     (
 # 240 "<standard.mly>"
     ( x :: xs )
-# 222 "lib/parser.ml"
+# 217 "lib/parser.ml"
      : (Asts.value list))
 
 let _menhir_action_14 =
   fun obj ->
     (
-# 25 "lib/parser.mly"
+# 22 "lib/parser.mly"
                                               ( `Assoc obj  )
-# 230 "lib/parser.ml"
+# 225 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_15 =
   fun vl ->
     (
-# 26 "lib/parser.mly"
+# 23 "lib/parser.mly"
                                               ( `List vl    )
-# 238 "lib/parser.ml"
+# 233 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_16 =
   fun s ->
     (
-# 27 "lib/parser.mly"
+# 24 "lib/parser.mly"
                                               ( `String s   )
-# 246 "lib/parser.ml"
+# 241 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_17 =
   fun i ->
     (
-# 28 "lib/parser.mly"
+# 25 "lib/parser.mly"
                                               ( `Int i      )
-# 254 "lib/parser.ml"
+# 249 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_18 =
   fun x ->
     (
-# 29 "lib/parser.mly"
+# 26 "lib/parser.mly"
                                               ( `Float x    )
-# 262 "lib/parser.ml"
+# 257 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_19 =
   fun () ->
     (
-# 30 "lib/parser.mly"
+# 27 "lib/parser.mly"
                                               ( `Bool true  )
-# 270 "lib/parser.ml"
+# 265 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_20 =
   fun () ->
     (
-# 31 "lib/parser.mly"
+# 28 "lib/parser.mly"
                                               ( `Bool false )
-# 278 "lib/parser.ml"
+# 273 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_action_21 =
   fun () ->
     (
-# 32 "lib/parser.mly"
+# 29 "lib/parser.mly"
                                               ( `Null       )
-# 286 "lib/parser.ml"
+# 281 "lib/parser.ml"
      : (Asts.value))
 
 let _menhir_print_token : token -> string =
@@ -298,8 +293,6 @@ let _menhir_print_token : token -> string =
         "FALSE"
     | FLOAT _ ->
         "FLOAT"
-    | ID _ ->
-        "ID"
     | INT _ ->
         "INT"
     | LEFT_BRACE ->

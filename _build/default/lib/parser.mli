@@ -10,7 +10,6 @@ type token =
   | LEFT_BRACK
   | LEFT_BRACE
   | INT of (int)
-  | ID of (string)
   | FLOAT of (float)
   | FALSE
   | EOF

@@ -4,11 +4,14 @@ open Parser
 exception SyntaxError of string
 }
 
+
 let int = '-'? ['0'-'9'] ['0'-'9']*
+
 let digit = ['0'-'9']
 let frac = '.' digit*
 let exp = ['e' 'E'] ['-' '+']? digit+
 let float = digit* frac? exp?
+
 let white = [' ' '\t']+
 let newline = '\r' | '\n' | "\r\n"
 let id = ['a'-'z' 'A'-'Z' '_'] ['a'-'z' 'A'-'Z' '0'-'9' '_']*
@@ -31,6 +34,7 @@ rule read =
   | ','      { COMMA }
   | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }
+
 and read_string buf =
   parse
   | '"'       { STRING (Buffer.contents buf) }

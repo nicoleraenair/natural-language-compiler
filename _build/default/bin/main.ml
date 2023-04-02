@@ -1,5 +1,5 @@
 open Core
-open Natural_language_compiler.Lexer
+open Compiler.Lexer
 open Lexing
 
 let print_position outx lexbuf =
@@ -8,18 +8,18 @@ let print_position outx lexbuf =
     pos.pos_lnum (pos.pos_cnum - pos.pos_bol + 1)
 
 let parse_with_error lexbuf =
-  try Natural_language_compiler.Parser.prog Natural_language_compiler.Lexer.read lexbuf with
+  try Compiler.Parser.prog Compiler.Lexer.read lexbuf with
   | SyntaxError msg ->
     fprintf stderr "%a: %s\n" print_position lexbuf msg;
     None
-  |  Natural_language_compiler.Parser.Error ->
+  |  Compiler.Parser.Error ->
     fprintf stderr "%a: syntax error\n" print_position lexbuf;
     exit (-1)
 
 let rec parse_and_print lexbuf =
   match parse_with_error lexbuf with
   | Some value ->
-    printf "%a\n"  Natural_language_compiler.Asts.output_value value;
+    printf "%a\n"  Compiler.Asts.output_value value;
     parse_and_print lexbuf
   | None -> ()
 
