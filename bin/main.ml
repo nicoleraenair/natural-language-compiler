@@ -1,4 +1,4 @@
-open Core
+(* open Core
 open Compiler.Lexer
 open Lexing
 
@@ -34,4 +34,4 @@ let () =
   Command.basic_spec ~summary:"Parse and display JSON"
     Command.Spec.(empty +> anon ("filename" %: string))
     loop
-  |> Command_unix.run
+  |> Command_unix.run *)

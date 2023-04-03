@@ -1,38 +1,79 @@
-%token <int> INT
-%token <float> FLOAT
-%token <string> STRING
-%token TRUE
-%token FALSE
-%token NULL
-%token LEFT_BRACE
-%token RIGHT_BRACE
-%token LEFT_BRACK
-%token RIGHT_BRACK
-%token COLON
-%token COMMA
+%{
+open Asts
+%}
+
+%token LOVED
+%token HATED
+%token TAUGHT
+%token HELPED
+%token STUDIED
+%token SLEPT
+%token ATE
+%token SWAM
+%token MATHEMATICIAN
+%token LAWYER
+%token ENGINEER
+%token FILMMAKER
+%token THE
+%token A
+%token EVERY
+%token SOME
+%token NO
+%token NICOLE
+%token CHRISTIE
+%token CALEB
+%token LAUREN
 %token EOF
-%start <Asts.value option> prog
+
+%start <Asts.sentence> input
 %%
 
-prog:
-  | v = value { Some v }
-  | EOF       { None   } ;
+input:
+  | s = sentence; EOF { s } ;
 
-value:
-  | LEFT_BRACE; obj = obj_fields; RIGHT_BRACE { `Assoc obj  }
-  | LEFT_BRACK; vl = list_fields; RIGHT_BRACK { `List vl    }
-  | s = STRING                                { `String s   }
-  | i = INT                                   { `Int i      }
-  | x = FLOAT                                 { `Float x    }
-  | TRUE                                      { `Bool true  }
-  | FALSE                                     { `Bool false }
-  | NULL                                      { `Null       } ;
+sentence:
+  | np = noun_phrase; vp = verb_phrase { S (np,vp) }
+  ;
 
-obj_fields:
-    obj = separated_list(COMMA, obj_field)    { obj } ;
+verb_phrase:
+  | iv = intransitive_verb { IVP iv }
+  | tv = transitive_verb; obj = noun_phrase {TVP (tv, obj)}
+  ;
 
-obj_field:
-    k = STRING; COLON; v = value              { (k, v) } ;
+intransitive_verb:
+  | STUDIED { Studied }
+  | SLEPT { Slept }
+  | ATE { Ate }
+  | SWAM { Swam }
+  ;
 
-list_fields:
-    vl = separated_list(COMMA, value)         { vl } ;
+transitive_verb:
+  | LOVED { Loved }
+  | HATED { Hated }
+  | TAUGHT { Taught }
+  | HELPED { Helped }
+  ;
+
+noun_phrase:
+  | pn = proper_noun { PNP pn }
+  | det = determiner; cn = common_noun {CNP (det, cn) }
+  ;
+
+proper_noun:
+  | NICOLE { Nicole }
+  | CHRISTIE { Christie }
+  | CALEB { Caleb }
+  | LAUREN { Lauren }
+
+determiner:
+  | THE { The }
+  | A { A }
+  | EVERY { Every }
+  | SOME { Some }
+  | NO { No }
+
+common_noun: 
+  | MATHEMATICIAN { Mathematician }
+  | LAWYER { Lawyer }
+  | ENGINEER { Engineer }
+  | FILMMAKER { Filmmaker }
