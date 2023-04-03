@@ -5,5 +5,5 @@
 
 (library
  (name compiler)
- (modules parser lexer asts)
+ (modules parser lexer asts printer)
  (libraries core))
