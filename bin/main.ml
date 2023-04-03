@@ -1,3 +1,11 @@
+open Compiler
+
+let parse (s : string) : Asts.sentence =
+  let lexbuf = Lexing.from_string s in
+  let ast = Parser.input Lexer.read lexbuf in
+  ast
+;;
+
 (* open Core
 open Compiler.Lexer
 open Lexing
