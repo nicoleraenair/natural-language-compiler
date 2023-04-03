@@ -17,10 +17,6 @@ type common_noun =
   | Engineer
   | Filmmaker
 
-type noun_phrase = 
-  | PNP of proper_noun
-  | CNP of determiner * common_noun
-
 type intransitive_verb = 
   | Studied
   | Slept
@@ -33,12 +29,12 @@ type transitive_verb =
   | Taught
   | Helped
 
-type verb_phrase = 
+type phrase = 
+  | S of phrase * phrase
+  | PNP of proper_noun
+  | CNP of determiner * common_noun
   | IVP of intransitive_verb
-  | TVP of transitive_verb * noun_phrase
-
-type sentence =
-  | S of noun_phrase * verb_phrase
+  | TVP of transitive_verb * phrase
 
   (* to add:
      - and/or/negate of sentences/vp/np/etc.
