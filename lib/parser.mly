@@ -2,24 +2,23 @@
 open Asts
 %}
 
-%token LOVED
-%token HATED
-%token TAUGHT
-%token HELPED
-%token STUDIED
-%token SLEPT
-%token ATE
-%token SWAM
+%token LOVES
+%token HATES
+%token TEACHES
+%token HELPS
+%token STUDIES
+%token SLEEPS
+%token EATS
+%token SWIMS
 %token MATHEMATICIAN
 %token LAWYER
 %token ENGINEER
 %token FILMMAKER
-%token THE
 %token A
 %token EVERY
 %token SOME
 %token NO
-%token NICOLE
+%token ALEX
 %token CHRISTIE
 %token CALEB
 %token LAUREN
@@ -46,27 +45,26 @@ noun_phrase:
   ;
 
 intransitive_verb:
-  | STUDIED { Studied }
-  | SLEPT { Slept }
-  | ATE { Ate }
-  | SWAM { Swam }
+  | STUDIES { Studies }
+  | SLEEPS { Sleeps }
+  | EATS { Eats }
+  | SWIMS { Swims }
   ;
 
 transitive_verb:
-  | LOVED { Loved }
-  | HATED { Hated }
-  | TAUGHT { Taught }
-  | HELPED { Helped }
+  | LOVES { Loves }
+  | HATES { Hates }
+  | TEACHES { Teaches }
+  | HELPS { Helps }
   ;
 
 proper_noun:
-  | NICOLE { Nicole }
+  | ALEX { Alex }
   | CHRISTIE { Christie }
   | CALEB { Caleb }
   | LAUREN { Lauren }
 
 determiner:
-  | THE { The }
   | A { A }
   | EVERY { Every }
   | SOME { Some }

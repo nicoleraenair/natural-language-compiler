@@ -24,24 +24,23 @@ rule read =
   parse
   | white { read lexbuf }
   | newline { new_line lexbuf; read lexbuf }
-  | "loved" { LOVED }
-  | "hated" { HATED }
-  | "taught" { TAUGHT }
-  | "helped" { HELPED }
-  | "studied" { STUDIED }
-  | "slept" { SLEPT }
-  | "ate" { ATE }
+  | "loves" { LOVES }
+  | "hates" { HATES }
+  | "teaches" { TEACHES }
+  | "helps" { HELPS }
+  | "studies" { STUDIES }
+  | "sleeps" { SLEEPS }
+  | "eats" { EATS }
+  | "swims" { SWIMS }
   | "mathematician" { MATHEMATICIAN }
   | "lawyer" { LAWYER }
   | "engineer" { ENGINEER }
   | "filmmaker" { FILMMAKER }
-  | "swam" { SWAM }
-  | "the" { THE }
   | "a" { A }
   | "every" { EVERY }
   | "some" { SOME }
   | "no" { NO }
-  | "nicole" { NICOLE }
+  | "alex" { ALEX }
   | "christie" { CHRISTIE }
   | "caleb" { CALEB }
   | "lauren" {LAUREN}

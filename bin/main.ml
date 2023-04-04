@@ -1,4 +1,4 @@
-open Compiler
+open Compilib
 
 let parse (s : string) : Asts.phrase =
   let lexbuf = Lexing.from_string s in

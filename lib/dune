@@ -4,6 +4,5 @@
 (ocamllex lexer)
 
 (library
- (name compiler)
- (modules parser lexer asts utoptest)
+ (name compilib)
  (libraries core))

@@ -1,11 +1,10 @@
 type proper_noun = 
-  | Nicole
+  | Alex
   | Christie
   | Caleb
   | Lauren
 
 type determiner =
-  | The
   | A
   | Every
   | Some
@@ -18,16 +17,16 @@ type common_noun =
   | Filmmaker
 
 type intransitive_verb = 
-  | Studied
-  | Slept
-  | Ate
-  | Swam
+  | Studies
+  | Sleeps
+  | Eats
+  | Swims
 
 type transitive_verb =
-  | Loved
-  | Hated
-  | Taught
-  | Helped
+  | Loves
+  | Hates
+  | Teaches
+  | Helps
 
 type phrase = 
   | S of phrase * phrase
@@ -45,3 +44,37 @@ type phrase =
      - wanted to INF
      - punctuation
   *)
+
+(* could also be single-letter variables, could be user-customizable *)
+let string_of_pn (pn : proper_noun) : string = 
+  match pn with
+  | Alex -> "Alex"
+  | Christie -> "Christie"
+  | Caleb -> "Caleb"
+  | Lauren -> "Lauren"
+;;
+
+(*is there a way to automatically just get the string version of the variant?*)
+let string_of_cn (cn : common_noun) : string = 
+  match cn with
+  | Mathematician -> "mathematician"
+  | Lawyer -> "lawyer"
+  | Engineer -> "engineer"
+  | Filmmaker -> "filmmaker"
+;;
+
+let string_of_iv (iv : intransitive_verb) : string =
+  match iv with
+  | Studies -> "studies"
+  | Sleeps -> "sleeps"
+  | Eats -> "eats"
+  | Swims -> "swims"
+;;
+
+let string_of_tv (tv : transitive_verb) : string =
+  match tv with
+  | Loves -> "loves"
+  | Hates -> "hates"
+  | Teaches -> "teaches"
+  | Helps -> "helps"
+;;
