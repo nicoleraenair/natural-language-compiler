@@ -6,6 +6,12 @@ let parse (s : string) : Asts.phrase =
   ast
 ;;
 
+let compile (s : string) : Lambda.expr = 
+  let ast = parse s in 
+  let lambda = Compiler.compile_phrase ast in 
+  lambda
+;;
+ 
 (* open Core
 open Compiler.Lexer
 open Lexing
