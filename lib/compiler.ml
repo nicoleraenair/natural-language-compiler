@@ -1,6 +1,8 @@
 open Asts
 open Lambda
 
+exception TypeMismatch;;
+
 (*cite palmer for freshening code, edit to make nicer looking eg P, P', P''..., vars + predicates + ?functions *)
 let _pcounter = ref "";;
 let _xcounter = ref "";;
@@ -40,7 +42,7 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     Lambda (x, Predicate(string_of_iv iv, [Var x]))
   | TVP (tv, np) -> let x = fresh_name "x" in
     let y = fresh_name "x" in
-    Lambda(x, Application (compile_phrase np, Lambda (y, Application (
+    Lambda(y, Application (compile_phrase np, Lambda (x, Application (
       Application (compile_phrase tv, Var y),
       Var x))))
   | DET det -> compile_det det
@@ -50,4 +52,34 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     let y = fresh_name "x" in
     Lambda (x, Lambda(y, Predicate(string_of_tv tv, [Var x; Var y])
   ))
+;;
+
+let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 
+  match (e : Lambda.expr) with
+  | Var v -> if (v = var) then (value) else e
+  | Application (e1, e2) -> Application (substitute var value e1, substitute var value e2)
+  | Conjunction (e1, e2) -> Conjunction (substitute var value e1, substitute var value e2)
+  | Disjunction (e1, e2) -> Disjunction (substitute var value e1, substitute var value e2)
+  | Implication (e1, e2) -> Implication (substitute var value e1, substitute var value e2)
+  | Negation e1 -> Negation (substitute var value e1)
+  | Lambda (x, body) -> if x = var then e else Lambda (x, substitute var value body)
+  | ForAll (x, body) -> if x = var then e else ForAll (x, substitute var value body)
+  | Exists (x, body) -> if x = var then e else Exists (x, substitute var value body)
+  | Predicate (pred, vars) -> Predicate(pred, List.map (substitute var value) vars)
+;;
+
+let rec reduce (e : Lambda.expr) : Lambda.expr = 
+  match (e : Lambda.expr) with
+  | Var _ -> e
+  | Predicate (pred, vars) -> Predicate(pred, List.map reduce vars)
+  | Lambda (x, b) -> Lambda (x, reduce b)
+  | ForAll (x, b) -> ForAll (x, reduce b)
+  | Exists (x, b) -> Exists (x, reduce b)
+  | Conjunction (e1, e2) -> Conjunction (reduce e1, reduce e2)
+  | Disjunction (e1, e2) -> Disjunction (reduce e1, reduce e2)
+  | Implication (e1, e2) -> Implication (reduce e1, reduce e2)
+  | Negation e1 -> Negation (reduce e1)
+  | Application (e1, e2) -> (match (reduce e1) with 
+    | Lambda (x, b) -> reduce (substitute x (reduce e2) b)
+    | _ -> Application (reduce e1, reduce e2))
 ;;
