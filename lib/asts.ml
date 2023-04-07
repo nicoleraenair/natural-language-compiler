@@ -31,18 +31,24 @@ type transitive_verb =
 type phrase = 
   | S of phrase * phrase
   | PNP of proper_noun
-  | CNP of determiner * common_noun
+  | CNP of phrase * phrase
+  | DET of determiner
+  | CN of common_noun
   | IVP of intransitive_verb
-  | TVP of transitive_verb * phrase
+  | TVP of phrase * phrase
+  | TV of transitive_verb
 
   (* to add:
      - and/or/negate of sentences/vp/np/etc.
      - relative clauses (THAT)
      - DV - eg. gave(_,_,_)
-     - adjectives
+     - is adjective (adj. = x.strong(x))
      - preposition phrases, in such a way that the sentence A dwarf defeated a giant with a sword is generated in two structurally different ways, while there is only one way to generate A dwarf defeated Little Mook with a sword.
      - wanted to INF
      - punctuation
+
+     - type inference OR add types in translation
+     - change to VP applied to NP, then NP can be simplified
   *)
 
 (* could also be single-letter variables, could be user-customizable *)
