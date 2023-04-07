@@ -41,14 +41,15 @@ type phrase =
   (* to add:
      - and/or/negate of sentences/vp/np/etc.
      - relative clauses (THAT)
-     - DV - eg. gave(_,_,_)
      - is adjective (adj. = x.strong(x))
-     - preposition phrases, in such a way that the sentence A dwarf defeated a giant with a sword is generated in two structurally different ways, while there is only one way to generate A dwarf defeated Little Mook with a sword.
-     - wanted to INF
-     - punctuation
 
-     - type inference OR add types in translation
-     - change to VP applied to NP, then NP can be simplified
+     every starfish waves
+     sal sings and robert dances
+    martha is a doctor?
+    paola sings and(VP) dances
+     extensions: punctuation, wanted to INF, didn't INF, preposition phrases, in such a way that the sentence A dwarf defeated a giant with a sword is generated in two structurally different ways, while there is only one way to generate A dwarf defeated Little Mook with a sword.
+
+
   *)
 
 (* could also be single-letter variables, could be user-customizable *)
