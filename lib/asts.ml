@@ -85,3 +85,19 @@ let string_of_tv (tv : transitive_verb) : string =
   | Teaches -> "teaches"
   | Helps -> "helps"
 ;;
+
+let string_of_det (det : determiner) : string = 
+  match det with A -> "a" | Every -> "every" | Some -> "some" | No -> "no"
+;;
+
+let rec string_of_phrase (p : phrase) : string = 
+  match p with
+  | S (np, vp) -> "S(" ^ string_of_phrase np ^ "," ^ string_of_phrase vp ^ ")"
+  | PNP pn -> string_of_pn pn
+  | CNP (det, cn) -> "CNP(" ^ string_of_phrase det ^ "," ^ string_of_phrase cn ^ ")"
+  | DET det -> string_of_det det
+  | CN cn -> string_of_cn cn
+  | IVP iv -> string_of_iv iv
+  | TVP (tv, np) -> "TVP(" ^ string_of_phrase tv ^ "," ^ string_of_phrase np ^ ")"
+  | TV tv -> string_of_tv tv
+;;

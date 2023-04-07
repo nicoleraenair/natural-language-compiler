@@ -2,11 +2,18 @@ open Asts
 open Lambda
 
 (*cite palmer for freshening code, edit to make nicer looking eg P, P', P''..., vars + predicates + ?functions *)
-let _counter = ref 0;;
+let _pcounter = ref "";;
+let _xcounter = ref "";;
+
 let fresh_name (prefix : string) : string =
-  let n = !_counter + 1 in
-  _counter := n;
-  prefix ^ "_" ^ string_of_int n
+  match prefix with
+  | "x" -> let n = !_xcounter in
+    _xcounter := n ^ "'";
+    prefix ^ n
+  | "P" -> let n = !_pcounter in
+    _pcounter := n ^ "'";
+    prefix ^ n
+  | _ -> prefix
 ;;
 
 let compile_det (det : determiner) : Lambda.expr = 
