@@ -36,9 +36,10 @@ type adjective =
 
 type phrase = 
   | S of phrase * phrase
-  | PNP of proper_noun
+  | PNP of phrase (* pn *)
   | CNP of phrase * phrase (* det cn / det rcn / det adjcn / det trcn *)
   | DET of determiner
+  | PN of proper_noun
   | CN of common_noun
   | IVP of intransitive_verb
   | TVP of phrase * phrase (* tv np *)
@@ -119,8 +120,9 @@ let string_of_det (det : determiner) : string =
 let rec string_of_phrase (p : phrase) : string = 
   match p with
   | S (np, vp) -> "S(" ^ string_of_phrase np ^ "," ^ string_of_phrase vp ^ ")"
-  | PNP pn -> "PNP(" ^ string_of_pn pn ^ ")"
+  | PNP pn -> "PNP(" ^ string_of_phrase pn ^ ")"
   | CNP (det, cn) -> "CNP(" ^ string_of_phrase det ^ "," ^ string_of_phrase cn ^ ")"
+  | PN pn -> "PN(" ^ string_of_pn pn ^ ")"
   | DET det -> "DET(" ^ string_of_det det ^ ")"
   | CN cn -> "CN(" ^ string_of_cn cn ^ ")"
   | IVP iv -> "ICP(" ^ string_of_iv iv ^ ")"

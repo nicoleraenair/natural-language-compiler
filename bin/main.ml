@@ -19,7 +19,7 @@ let parse_with_error (lexbuf : lexbuf) : Asts.phrase =
 ;;
 
 let loop phrase () =
-  let lexbuf = Lexing.from_string phrase in
+  let lexbuf = Lexing.from_string (String.lowercase phrase) in
   let ast = parse_with_error lexbuf in
   let lambda_expr = Compiler.reduce (Compiler.compile_phrase ast) in
   printf "\nSyntax Tree: %s\n" (Asts.string_of_phrase ast);
@@ -28,7 +28,7 @@ let loop phrase () =
 ;;
 
 let () =
-  Command.basic_spec ~summary:"Parse and print phrase"
+  Command.basic_spec ~summary:"Parse, translate, and type-check phrase"
     Command.Spec.(empty +> anon ("phrase" %: string))
     loop
   |> Command_unix.run

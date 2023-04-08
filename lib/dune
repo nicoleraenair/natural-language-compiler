@@ -1,8 +1,9 @@
 (menhir
- (modules parser))
+ (modules parser)
+ (flags --explain))
 
 (ocamllex lexer)
 
 (library
  (name compilib)
- (libraries core))
+ (libraries core menhirLib))

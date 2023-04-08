@@ -29,23 +29,7 @@ open Asts
 %token GRUMPY
 %token EOF
 
-%start input
-
-%type <Asts.phrase> input
-%type <Asts.phrase> sentence
-%type <Asts.phrase> verb_phrase
-%type <Asts.phrase> noun_phrase
-
-%type <Asts.intransitive_verb> intransitive_verb
-%type <Asts.transitive_verb> transitive_verb
-%type <Asts.proper_noun> proper_noun
-%type <Asts.determiner> determiner
-%type <Asts.common_noun> common_noun
-
-%type <Asts.phrase> relative_common_noun
-%type <Asts.phrase> transitive_relative_common_noun
-%type <Asts.phrase> adjective_common_noun
-%type <Asts.adjective> adjective
+%start <Asts.phrase> input
 
 %%
 
@@ -53,13 +37,13 @@ input:
   | s = sentence; EOF { s } 
   | vp = verb_phrase; EOF { vp }
   | np = noun_phrase; EOF { np }
-  | tv = transitive_verb; EOF { TV tv }
-  | det = determiner; EOF { DET det }
-  | cn = common_noun; EOF { CN cn }
-  | rcn = relative_common_noun; EOF {rcn}
-  | trcn = transitive_relative_common_noun; EOF {trcn}
-  | adjcn = adjective_common_noun; EOF {adjcn}
-  | adj = adjective; EOF {ADJ adj}
+  | tv = transitive_verb; EOF { tv }
+  | det = determiner; EOF { det }
+  | cn = common_noun; EOF { cn }
+  | pn = proper_noun; EOF { pn }
+  | rcn = relative_common_noun; EOF { rcn }
+  | trcn = transitive_relative_common_noun; EOF { trcn }
+  | adj = adjective; EOF { adj }
   ;
 
 sentence:
@@ -67,65 +51,60 @@ sentence:
   ;
 
 verb_phrase:
-  | iv = intransitive_verb { IVP iv }
-  | tv = transitive_verb; obj = noun_phrase {TVP (TV tv, obj)}
+  | iv = intransitive_verb { iv }
+  | tv = transitive_verb; obj = noun_phrase {TVP (tv, obj)}
   ;
 
 noun_phrase:
   | pn = proper_noun { PNP pn }
-  | det = determiner; cn = common_noun { CNP (DET det, CN cn) }
-  | det = determiner; rcn = relative_common_noun { CNP (DET det, rcn) }
-  | det = determiner; trcn = transitive_relative_common_noun { CNP (DET det, trcn) }
-  | det = determiner; adjcn = adjective_common_noun { CNP (DET det, adjcn) }
+  | det = determiner; cn = common_noun { CNP (det, cn) }
+  | det = determiner; rcn = relative_common_noun { CNP (det, rcn) }
+  | det = determiner; trcn = transitive_relative_common_noun { CNP (det, trcn) }
   ;
 
 relative_common_noun:
-  | cn = common_noun; THAT; vp = verb_phrase { RCN (CN cn, vp) }
+  | cn = common_noun; THAT; vp = verb_phrase { RCN (cn, vp) }
   ;
 
 transitive_relative_common_noun:
-  | cn = common_noun; THAT; np = noun_phrase; tv = transitive_verb { TRCN (CN cn, np, TV tv) }
-  ;
-
-adjective_common_noun:
-  | adj = adjective; cn = common_noun { ADJCN (ADJ adj, CN cn) }
-  | adj = adjective; adjcn = adjective_common_noun { ADJCN (ADJ adj, adjcn) }
+  | cn = common_noun; THAT; np = noun_phrase; tv = transitive_verb { TRCN (cn, np, tv) }
   ;
 
 intransitive_verb:
-  | STUDIES { Studies }
-  | SLEEPS { Sleeps }
-  | EATS { Eats }
-  | SWIMS { Swims }
+  | STUDIES { IVP Studies }
+  | SLEEPS { IVP Sleeps }
+  | EATS { IVP Eats }
+  | SWIMS { IVP Swims }
   ;
 
 transitive_verb:
-  | LOVES { Loves }
-  | HATES { Hates }
-  | TEACHES { Teaches }
-  | HELPS { Helps }
+  | LOVES { TV Loves }
+  | HATES { TV Hates }
+  | TEACHES { TV Teaches }
+  | HELPS { TV Helps }
   ;
 
 proper_noun:
-  | ALEX { Alex }
-  | CHRISTIE { Christie }
-  | CALEB { Caleb }
-  | LAUREN { Lauren }
+  | ALEX { PN Alex }
+  | CHRISTIE { PN Christie }
+  | CALEB { PN Caleb }
+  | LAUREN { PN Lauren }
 
 determiner:
-  | A { A }
-  | EVERY { Every }
-  | SOME { Some }
-  | NO { No }
+  | A { DET A }
+  | EVERY { DET Every }
+  | SOME { DET Some }
+  | NO { DET No }
 
 common_noun: 
-  | MATHEMATICIAN { Mathematician }
-  | LAWYER { Lawyer }
-  | ENGINEER { Engineer }
-  | FILMMAKER { Filmmaker }
+  | MATHEMATICIAN { CN Mathematician }
+  | LAWYER { CN Lawyer }
+  | ENGINEER { CN Engineer }
+  | FILMMAKER { CN Filmmaker }
+  | adj = adjective; cn = common_noun { ADJCN (adj, cn) }
 
 adjective: 
-  | CLEVER { Clever }
-  | SLEEPY { Sleepy }
-  | FUNNY { Funny }
-  | GRUMPY { Grumpy }
+  | CLEVER { ADJ Clever }
+  | SLEEPY { ADJ Sleepy }
+  | FUNNY { ADJ Funny }
+  | GRUMPY { ADJ Grumpy }

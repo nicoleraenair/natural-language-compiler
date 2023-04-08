@@ -36,26 +36,32 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
   match p with
   | S (np, vp) -> Application (compile_phrase np, compile_phrase vp)
   | PNP pn -> let param = fresh_name "P" in 
-    Lambda (param, Application (Var param, Var (string_of_pn pn)))
+    Lambda (param, Application (Var param, compile_phrase pn))
   | CNP (det, cn) -> Application (compile_phrase det, compile_phrase cn)
   | IVP iv -> let x = fresh_name "x" in
     Lambda (x, Predicate(string_of_iv iv, [Var x]))
   | TVP (tv, np) -> let x = fresh_name "x" in
     let y = fresh_name "x" in
-    Lambda(y, Application (compile_phrase np, Lambda (x, Application (
-      Application (compile_phrase tv, Var y),
-      Var x))))
+    Lambda(x, Application (compile_phrase np, Lambda (y, Application (
+      Application (compile_phrase tv, Var y), Var x))))
   | DET det -> compile_det det
   | CN cn -> let x = fresh_name "x" in
     Lambda (x, Predicate(string_of_cn cn, [Var x]))
   | TV tv -> let x = fresh_name "x" in
     let y = fresh_name "x" in
-    Lambda (x, Lambda(y, Predicate(string_of_tv tv, [Var x; Var y])
+    Lambda (y, Lambda(x, Predicate(string_of_tv tv, [Var x; Var y])
   ))
-  | (RCN (_, _)
-  | TRCN (_, _, _)
-  | ADJ _
-  | ADJCN (_, _)) -> failwith "todo"
+  | RCN (cn, vp) -> let x = fresh_name "x" in
+    Lambda(x, Conjunction(Application(compile_phrase cn, Var x),Application(compile_phrase vp, Var x)))
+  | TRCN (cn, np, tv) -> let x = fresh_name "x" in
+    let y = fresh_name "x" in
+    Lambda(x, Conjunction(Application(compile_phrase cn, Var x), Application (compile_phrase np, Lambda (y, Application (
+      Application (compile_phrase tv, Var x), Var y)))))
+  | ADJ adj -> let x = fresh_name "x" in
+    let p = fresh_name "P" in
+    Lambda(p, Lambda(x, Conjunction(Predicate(string_of_adj adj, [Var x]), Application(Var p, Var x))))
+  | ADJCN (adj, cn) -> Application(compile_phrase adj, compile_phrase cn)
+  | PN pn -> Var (string_of_pn pn)
 ;;
 
 let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 

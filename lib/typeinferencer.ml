@@ -19,8 +19,9 @@ let type_of (p : phrase) : string =
     | PNP _ | CNP (_, _) -> F(F(E,T),T)
     | IVP _ | TVP (_, _) -> F(E,T)
     | DET _ -> F(F(E,T),F(F(E,T), T))
-    | CN _ -> F(E,T)
+    | CN _ | RCN (_, _) | TRCN (_, _, _) |ADJCN (_, _) -> F(E,T)
     | TV _ -> F(E,F(E,T))
-    | (RCN (_, _)|TRCN (_, _, _)|ADJ _|ADJCN (_, _)) -> failwith "TODO"
+    | ADJ _ -> F(F(E,T),F(E,T))
+    | PN _ -> E
   )
 ;;
