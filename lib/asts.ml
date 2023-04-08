@@ -28,28 +28,46 @@ type transitive_verb =
   | Teaches
   | Helps
 
+type adjective =
+  | Clever
+  | Sleepy
+  | Funny
+  | Grumpy
+
 type phrase = 
   | S of phrase * phrase
   | PNP of proper_noun
-  | CNP of phrase * phrase
+  | CNP of phrase * phrase (* det cn / det rcn / det adjcn / det trcn *)
   | DET of determiner
   | CN of common_noun
   | IVP of intransitive_verb
-  | TVP of phrase * phrase
+  | TVP of phrase * phrase (* tv np *)
   | TV of transitive_verb
+
+  | RCN of phrase * phrase (* cn that ivp / cn that tvp *)
+  | TRCN of phrase * phrase * phrase (* cn that np tv *)
+  | ADJ of adjective
+  | ADJCN of phrase * phrase (* adj cn / adj cn *)
 
   (* to add:
      - and/or/negate of sentences/vp/np/etc.
+        | SOR of phrase * phrase
+        | SAND of phrase * phrase
+        | NOR of phrase * phrase
+        | NAND of phrase * phrase
+        | VOR of phrase * phrase
+        | VAND of phrase * phrase
      - relative clauses (THAT)
-     - is adjective (adj. = x.strong(x))
+     - is ADJ (adj. = x.strong(x))
+     - is a CN/rcn/trcn/adjcn
 
-     every starfish waves
-     sal sings and robert dances
-    martha is a doctor?
-    paola sings and(VP) dances
-     extensions: punctuation, wanted to INF, didn't INF, preposition phrases, in such a way that the sentence A dwarf defeated a giant with a sword is generated in two structurally different ways, while there is only one way to generate A dwarf defeated Little Mook with a sword.
+    sal sings and robert dances
+    martha is clever
+    martha is a 
+    a clever grumpy filmmaker loves a funny mathematician.
+    caleb sleeps and(VP) swims and studies/ commas?
 
-
+    extensions: punctuation, wanted to INF, didn't INF, preposition phrases, syntactic ambiguities
   *)
 
 (* could also be single-letter variables, could be user-customizable *)
@@ -86,6 +104,14 @@ let string_of_tv (tv : transitive_verb) : string =
   | Helps -> "helps"
 ;;
 
+let string_of_adj (adj : adjective) : string = 
+  match adj with
+  | Clever -> "clever"
+  | Sleepy -> "sleepy"
+  | Funny -> "funny"
+  | Grumpy -> "grumpy"
+;;
+
 let string_of_det (det : determiner) : string = 
   match det with A -> "a" | Every -> "every" | Some -> "some" | No -> "no"
 ;;
@@ -93,11 +119,15 @@ let string_of_det (det : determiner) : string =
 let rec string_of_phrase (p : phrase) : string = 
   match p with
   | S (np, vp) -> "S(" ^ string_of_phrase np ^ "," ^ string_of_phrase vp ^ ")"
-  | PNP pn -> string_of_pn pn
+  | PNP pn -> "PNP(" ^ string_of_pn pn ^ ")"
   | CNP (det, cn) -> "CNP(" ^ string_of_phrase det ^ "," ^ string_of_phrase cn ^ ")"
-  | DET det -> string_of_det det
-  | CN cn -> string_of_cn cn
-  | IVP iv -> string_of_iv iv
+  | DET det -> "DET(" ^ string_of_det det ^ ")"
+  | CN cn -> "CN(" ^ string_of_cn cn ^ ")"
+  | IVP iv -> "ICP(" ^ string_of_iv iv ^ ")"
   | TVP (tv, np) -> "TVP(" ^ string_of_phrase tv ^ "," ^ string_of_phrase np ^ ")"
-  | TV tv -> string_of_tv tv
+  | TV tv -> "TV(" ^ string_of_tv tv ^ ")"
+  | RCN (cn, vp) -> "RCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase vp ^ ")"
+  | TRCN (cn, np, tv) -> "TRCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase np ^ "," ^ string_of_phrase tv ^ ")"
+  | ADJ adj -> "ADJ(" ^ string_of_adj adj ^ ")"
+  | ADJCN (adj, n) -> "ADJCN(" ^ string_of_phrase adj ^ "," ^ string_of_phrase n ^ ")"
 ;;

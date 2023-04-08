@@ -22,6 +22,11 @@ open Asts
 %token CHRISTIE
 %token CALEB
 %token LAUREN
+%token THAT
+%token CLEVER
+%token SLEEPY
+%token FUNNY
+%token GRUMPY
 %token EOF
 
 %start input
@@ -37,6 +42,11 @@ open Asts
 %type <Asts.determiner> determiner
 %type <Asts.common_noun> common_noun
 
+%type <Asts.phrase> relative_common_noun
+%type <Asts.phrase> transitive_relative_common_noun
+%type <Asts.phrase> adjective_common_noun
+%type <Asts.adjective> adjective
+
 %%
 
 input:
@@ -46,6 +56,10 @@ input:
   | tv = transitive_verb; EOF { TV tv }
   | det = determiner; EOF { DET det }
   | cn = common_noun; EOF { CN cn }
+  | rcn = relative_common_noun; EOF {rcn}
+  | trcn = transitive_relative_common_noun; EOF {trcn}
+  | adjcn = adjective_common_noun; EOF {adjcn}
+  | adj = adjective; EOF {ADJ adj}
   ;
 
 sentence:
@@ -60,6 +74,22 @@ verb_phrase:
 noun_phrase:
   | pn = proper_noun { PNP pn }
   | det = determiner; cn = common_noun { CNP (DET det, CN cn) }
+  | det = determiner; rcn = relative_common_noun { CNP (DET det, rcn) }
+  | det = determiner; trcn = transitive_relative_common_noun { CNP (DET det, trcn) }
+  | det = determiner; adjcn = adjective_common_noun { CNP (DET det, adjcn) }
+  ;
+
+relative_common_noun:
+  | cn = common_noun; THAT; vp = verb_phrase { RCN (CN cn, vp) }
+  ;
+
+transitive_relative_common_noun:
+  | cn = common_noun; THAT; np = noun_phrase; tv = transitive_verb { TRCN (CN cn, np, TV tv) }
+  ;
+
+adjective_common_noun:
+  | adj = adjective; cn = common_noun { ADJCN (ADJ adj, CN cn) }
+  | adj = adjective; adjcn = adjective_common_noun { ADJCN (ADJ adj, adjcn) }
   ;
 
 intransitive_verb:
@@ -93,3 +123,9 @@ common_noun:
   | LAWYER { Lawyer }
   | ENGINEER { Engineer }
   | FILMMAKER { Filmmaker }
+
+adjective: 
+  | CLEVER { Clever }
+  | SLEEPY { Sleepy }
+  | FUNNY { Funny }
+  | GRUMPY { Grumpy }

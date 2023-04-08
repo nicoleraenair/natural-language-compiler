@@ -44,5 +44,10 @@ rule read =
   | "christie" { CHRISTIE }
   | "caleb" { CALEB }
   | "lauren" {LAUREN}
+  | "that" {THAT}
+  | "clever" {CLEVER}
+  | "sleepy" {SLEEPY}
+  | "funny" {FUNNY}
+  | "grumpy" {GRUMPY}
   | _ { raise (SyntaxError ("Unexpected lexeme: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }

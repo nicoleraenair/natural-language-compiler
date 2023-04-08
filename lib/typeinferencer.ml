@@ -21,5 +21,6 @@ let type_of (p : phrase) : string =
     | DET _ -> F(F(E,T),F(F(E,T), T))
     | CN _ -> F(E,T)
     | TV _ -> F(E,F(E,T))
+    | (RCN (_, _)|TRCN (_, _, _)|ADJ _|ADJCN (_, _)) -> failwith "TODO"
   )
 ;;

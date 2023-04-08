@@ -52,6 +52,10 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     let y = fresh_name "x" in
     Lambda (x, Lambda(y, Predicate(string_of_tv tv, [Var x; Var y])
   ))
+  | (RCN (_, _)
+  | TRCN (_, _, _)
+  | ADJ _
+  | ADJCN (_, _)) -> failwith "todo"
 ;;
 
 let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 
