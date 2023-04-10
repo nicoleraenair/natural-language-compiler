@@ -58,17 +58,15 @@ type phrase =
         | NAND of phrase * phrase
         | VOR of phrase * phrase
         | VAND of phrase * phrase
-     - relative clauses (THAT)
-     - is ADJ (adj. = x.strong(x))
      - is a CN/rcn/trcn/adjcn
+     - is adjective
 
-    sal sings and robert dances
-    martha is clever
-    martha is a 
-    a clever grumpy filmmaker loves a funny mathematician.
-    caleb sleeps and(VP) swims and studies/ commas?
+    caleb studies and lauren eats and ...
+    caleb sleeps and(VP) swims = caleb sleeps and caleb swims
+    alex is clever
+    christie is a lawyer
 
-    extensions: punctuation, wanted to INF, didn't INF, preposition phrases, syntactic ambiguities
+    extensions: punctuation (commas eg for and), wanted to INF, didn't INF, preposition phrases, syntactic ambiguities
   *)
 
 (* could also be single-letter variables, could be user-customizable *)
@@ -125,7 +123,7 @@ let rec string_of_phrase (p : phrase) : string =
   | PN pn -> "PN(" ^ string_of_pn pn ^ ")"
   | DET det -> "DET(" ^ string_of_det det ^ ")"
   | CN cn -> "CN(" ^ string_of_cn cn ^ ")"
-  | IVP iv -> "ICP(" ^ string_of_iv iv ^ ")"
+  | IVP iv -> "IVP(" ^ string_of_iv iv ^ ")"
   | TVP (tv, np) -> "TVP(" ^ string_of_phrase tv ^ "," ^ string_of_phrase np ^ ")"
   | TV tv -> "TV(" ^ string_of_tv tv ^ ")"
   | RCN (cn, vp) -> "RCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase vp ^ ")"

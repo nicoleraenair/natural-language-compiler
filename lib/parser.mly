@@ -29,7 +29,8 @@ open Asts
 %token GRUMPY
 %token EOF
 
-%start <Asts.phrase> input
+%type <Asts.phrase> input, adjective, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_relative_common_noun, transitive_verb, verb_phrase
+%start input
 
 %%
 
@@ -37,12 +38,12 @@ input:
   | s = sentence; EOF { s } 
   | vp = verb_phrase; EOF { vp }
   | np = noun_phrase; EOF { np }
+  | rcn = relative_common_noun; EOF { rcn }
+  | trcn = transitive_relative_common_noun; EOF { trcn }
   | tv = transitive_verb; EOF { tv }
   | det = determiner; EOF { det }
   | cn = common_noun; EOF { cn }
   | pn = proper_noun; EOF { pn }
-  | rcn = relative_common_noun; EOF { rcn }
-  | trcn = transitive_relative_common_noun; EOF { trcn }
   | adj = adjective; EOF { adj }
   ;
 
