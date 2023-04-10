@@ -49,5 +49,6 @@ rule read =
   | "sleepy" {SLEEPY}
   | "funny" {FUNNY}
   | "grumpy" {GRUMPY}
+  | "is" {IS}
   | _ { raise (SyntaxError ("Unexpected lexeme: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }

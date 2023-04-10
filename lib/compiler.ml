@@ -62,6 +62,9 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     Lambda(p, Lambda(x, Conjunction(Predicate(string_of_adj adj, [Var x]), Application(Var p, Var x))))
   | ADJCN (adj, cn) -> Application(compile_phrase adj, compile_phrase cn)
   | PN pn -> Var (string_of_pn pn)
+  | ISNVP n -> compile_phrase n
+  | ISADJVP adj -> let x = fresh_name "x" in
+    Lambda (x, Predicate(string_of_adj adj, [Var x]))
 ;;
 
 let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 

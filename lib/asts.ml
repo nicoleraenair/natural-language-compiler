@@ -44,29 +44,35 @@ type phrase =
   | IVP of intransitive_verb
   | TVP of phrase * phrase (* tv np *)
   | TV of transitive_verb
-
   | RCN of phrase * phrase (* cn that ivp / cn that tvp *)
   | TRCN of phrase * phrase * phrase (* cn that np tv *)
   | ADJ of adjective
   | ADJCN of phrase * phrase (* adj cn / adj cn *)
+  | ISNVP of phrase (* cn/rcn/trcn *)
+  | ISADJVP of adjective (* adj *)
 
   (* to add:
-     - and/or/negate of sentences/vp/np/etc.
-        | SOR of phrase * phrase
-        | SAND of phrase * phrase
-        | NOR of phrase * phrase
-        | NAND of phrase * phrase
-        | VOR of phrase * phrase
-        | VAND of phrase * phrase
-     - is a CN/rcn/trcn/adjcn
-     - is adjective
-
-    caleb studies and lauren eats and ...
-    caleb sleeps and(VP) swims = caleb sleeps and caleb swims
-    alex is clever
+    - S(CN, is a CN/rcn/trcn/adjcn)
+   
+    alex/every lawyer is clever
     christie is a lawyer
 
-    extensions: punctuation (commas eg for and), wanted to INF, didn't INF, preposition phrases, syntactic ambiguities
+    extensions:
+
+    - punctuation (commas eg for and)
+    - wanted to INF, didn't INF
+    - preposition phrases
+    - syntactic ambiguities
+
+    ! and/or/negate of sentences/vp/np/etc.
+      | SOR of phrase * phrase
+      | SAND of phrase * phrase
+      | NOR of phrase * phrase
+      | NAND of phrase * phrase
+      | VOR of phrase * phrase
+      | VAND of phrase * phrase
+    caleb studies and lauren eats and ...
+    caleb sleeps and(VP) swims = caleb sleeps and caleb swims
   *)
 
 (* could also be single-letter variables, could be user-customizable *)
@@ -130,4 +136,6 @@ let rec string_of_phrase (p : phrase) : string =
   | TRCN (cn, np, tv) -> "TRCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase np ^ "," ^ string_of_phrase tv ^ ")"
   | ADJ adj -> "ADJ(" ^ string_of_adj adj ^ ")"
   | ADJCN (adj, n) -> "ADJCN(" ^ string_of_phrase adj ^ "," ^ string_of_phrase n ^ ")"
+  | ISNVP n -> "ISNVP(" ^ string_of_phrase n ^ ")"
+  | ISADJVP adj -> "ISADJVP(" ^ string_of_adj adj ^ ")"
 ;;

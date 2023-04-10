@@ -27,9 +27,11 @@ open Asts
 %token SLEEPY
 %token FUNNY
 %token GRUMPY
+%token IS
 %token EOF
 
-%type <Asts.phrase> input, adjective, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_relative_common_noun, transitive_verb, verb_phrase
+%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_relative_common_noun, transitive_verb, verb_phrase
+%type <Asts.adjective> adjective
 %start input
 
 %%
@@ -44,7 +46,7 @@ input:
   | det = determiner; EOF { det }
   | cn = common_noun; EOF { cn }
   | pn = proper_noun; EOF { pn }
-  | adj = adjective; EOF { adj }
+  | adj = adjective; EOF { ADJ adj }
   ;
 
 sentence:
@@ -54,6 +56,10 @@ sentence:
 verb_phrase:
   | iv = intransitive_verb { iv }
   | tv = transitive_verb; obj = noun_phrase {TVP (tv, obj)}
+  | IS; adj = adjective { ISADJVP adj }
+  | IS; A; cn = common_noun { ISNVP cn }
+  | IS; A; rcn = relative_common_noun { ISNVP rcn }
+  | IS; A; trcn = transitive_relative_common_noun { ISNVP trcn }
   ;
 
 noun_phrase:
@@ -102,10 +108,10 @@ common_noun:
   | LAWYER { CN Lawyer }
   | ENGINEER { CN Engineer }
   | FILMMAKER { CN Filmmaker }
-  | adj = adjective; cn = common_noun { ADJCN (adj, cn) }
+  | adj = adjective; cn = common_noun { ADJCN (ADJ adj, cn) }
 
 adjective: 
-  | CLEVER { ADJ Clever }
-  | SLEEPY { ADJ Sleepy }
-  | FUNNY { ADJ Funny }
-  | GRUMPY { ADJ Grumpy }
+  | CLEVER { Clever }
+  | SLEEPY { Sleepy }
+  | FUNNY { Funny }
+  | GRUMPY { Grumpy }
