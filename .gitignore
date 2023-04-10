@@ -2,3 +2,4 @@ _opam
 _build
 lib/utoptest.ml
 lib/parser.conflicts
+test
