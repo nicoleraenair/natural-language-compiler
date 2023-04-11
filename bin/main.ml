@@ -21,7 +21,7 @@ let parse_with_error (lexbuf : lexbuf) : Asts.phrase =
 let loop phrase () =
   let lexbuf = Lexing.from_string (String.lowercase phrase) in
   let ast = parse_with_error lexbuf in
-  let lambda_expr = Compiler.reduce (Compiler.compile_phrase ast) in
+  let lambda_expr =  (Compiler.compile_phrase ast) in
   printf "\nSyntax Tree: %s\n" (Asts.string_of_phrase ast);
   printf "Denotation: %s\n" (Lambda.string_of_lambda lambda_expr);
   printf "Semantic Type: %s\n" (Typeinferencer.type_of ast);

@@ -4,17 +4,22 @@ open Lambda
 exception TypeMismatch;;
 
 (*cite palmer for freshening code, edit to make nicer looking eg P, P', P''..., vars + predicates + ?functions *)
-let _pcounter = ref "";;
-let _xcounter = ref "";;
-
+let _pletter = ref 0;;
+let _pprime = ref "";;
+let _xletter = ref 0;;
+let _xprime = ref "";;
 let fresh_name (prefix : string) : string =
   match prefix with
-  | "x" -> let n = !_xcounter in
-    _xcounter := n ^ "'";
-    prefix ^ n
-  | "P" -> let n = !_pcounter in
-    _pcounter := n ^ "'";
-    prefix ^ n
+  | "x" -> let x = !_xletter in
+    let n = !_xprime in
+    _xletter := (x + 1) mod 26;
+    _xprime := n ^ (if x = 25 then "'" else "");
+    (Char.escaped (Char.chr (((x+23)mod 26) + 97))) ^ n
+  | "P" -> let p = !_pletter in
+    let n = !_pprime in
+    _pletter := (p + 1) mod 26;
+    _pprime := n ^ (if p = 25 then "'" else "");
+    (Char.escaped (Char.chr (((p+15)mod 26) + 65))) ^ n
   | _ -> prefix
 ;;
 
