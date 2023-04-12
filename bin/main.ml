@@ -38,6 +38,6 @@ let rec main_loop () =
 
 printf "\n\nInstructions:\n
         - Enter a phrase to see its syntax tree, lambda calculus + predicate logic denotation, and semantic type.\n
-        - Enter \"exit\" to exit the program.contents.\n
+        - Enter \"exit\" to exit the program.\n
         - Enter \"grammar\" to see what types of phrases can be entered.\n";
 main_loop ()
