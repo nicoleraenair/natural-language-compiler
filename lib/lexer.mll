@@ -50,5 +50,5 @@ rule read =
   | "funny" {FUNNY}
   | "grumpy" {GRUMPY}
   | "is" {IS}
-  | _ { raise (SyntaxError ("Unexpected lexeme: " ^ Lexing.lexeme lexbuf)) }
+  | _ { raise (SyntaxError ("Invalid lexeme entered: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }
