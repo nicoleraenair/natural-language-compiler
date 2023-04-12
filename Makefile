@@ -1,0 +1,2 @@
+default:
+	dune exec main

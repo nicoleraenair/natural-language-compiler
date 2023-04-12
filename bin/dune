@@ -1,4 +1,4 @@
 (executable
- (public_name translate)
+ (public_name main)
  (name main)
- (libraries compilib core core_unix.command_unix))
+ (libraries compilib core))
