@@ -30,7 +30,7 @@ open Asts
 %token IS
 %token EOF
 
-%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_relative_common_noun, transitive_verb, verb_phrase
+%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_verb, verb_phrase
 %type <Asts.adjective> adjective
 %start input
 
@@ -41,7 +41,6 @@ input:
   | vp = verb_phrase; EOF { vp }
   | np = noun_phrase; EOF { np }
   | rcn = relative_common_noun; EOF { rcn }
-  | trcn = transitive_relative_common_noun; EOF { trcn }
   | tv = transitive_verb; EOF { tv }
   | det = determiner; EOF { det }
   | cn = common_noun; EOF { cn }
@@ -59,21 +58,16 @@ verb_phrase:
   | IS; adj = adjective { ISADJVP adj }
   | IS; A; cn = common_noun { ISNVP cn }
   | IS; A; rcn = relative_common_noun { ISNVP rcn }
-  | IS; A; trcn = transitive_relative_common_noun { ISNVP trcn }
   ;
 
 noun_phrase:
   | pn = proper_noun { PNP pn }
   | det = determiner; cn = common_noun { CNP (det, cn) }
   | det = determiner; rcn = relative_common_noun { CNP (det, rcn) }
-  | det = determiner; trcn = transitive_relative_common_noun { CNP (det, trcn) }
   ;
 
 relative_common_noun:
   | cn = common_noun; THAT; vp = verb_phrase { RCN (cn, vp) }
-  ;
-
-transitive_relative_common_noun:
   | cn = common_noun; THAT; np = noun_phrase; tv = transitive_verb { TRCN (cn, np, tv) }
   ;
 
