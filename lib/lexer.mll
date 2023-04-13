@@ -27,7 +27,7 @@ rule read =
   | "loves" { LOVES }
   | "hates" { HATES }
   | "teaches" { TEACHES }
-  | "helps" { HELPS }
+  | "knows" { KNOWS }
   | "studies" { STUDIES }
   | "sleeps" { SLEEPS }
   | "eats" { EATS }

@@ -5,7 +5,7 @@ open Asts
 %token LOVES
 %token HATES
 %token TEACHES
-%token HELPS
+%token KNOWS
 %token STUDIES
 %token SLEEPS
 %token EATS
@@ -82,7 +82,7 @@ transitive_verb:
   | LOVES { TV Loves }
   | HATES { TV Hates }
   | TEACHES { TV Teaches }
-  | HELPS { TV Helps }
+  | KNOWS { TV Knows }
   ;
 
 proper_noun:

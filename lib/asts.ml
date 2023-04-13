@@ -26,7 +26,7 @@ type transitive_verb =
   | Loves
   | Hates
   | Teaches
-  | Helps
+  | Knows
 
 type adjective =
   | Clever
@@ -106,7 +106,7 @@ let string_of_tv (tv : transitive_verb) : string =
   | Loves -> "loves"
   | Hates -> "hates"
   | Teaches -> "teaches"
-  | Helps -> "helps"
+  | Knows -> "knows"
 ;;
 
 let string_of_adj (adj : adjective) : string = 
