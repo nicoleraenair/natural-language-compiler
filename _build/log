@@ -1,0 +1,118 @@
+# dune build
+# OCAMLPARAM: unset
+# Shared cache: disabled
+# Workspace root: /Users/nicolenair/Desktop/CS/natural_language_compiler
+# Auto-detected concurrency: 8
+$ /Users/nicolenair/_opam/bin/ocamlc.opt -config > /var/folders/zt/4_njy8697s15cxqc0x830m880000gn/T/dune_6367f1_output
+# Dune context:
+#  { name = "default"
+#  ; kind = "default"
+#  ; profile = Dev
+#  ; merlin = true
+#  ; for_host = None
+#  ; fdo_target_exe = None
+#  ; build_dir = In_build_dir "default"
+#  ; toplevel_path = Some External "/Users/nicolenair/_opam/lib/toplevel"
+#  ; ocaml_bin = External "/Users/nicolenair/_opam/bin"
+#  ; ocaml = Ok External "/Users/nicolenair/_opam/bin/ocaml"
+#  ; ocamlc = External "/Users/nicolenair/_opam/bin/ocamlc.opt"
+#  ; ocamlopt = Ok External "/Users/nicolenair/_opam/bin/ocamlopt.opt"
+#  ; ocamldep = Ok External "/Users/nicolenair/_opam/bin/ocamldep.opt"
+#  ; ocamlmklib = Ok External "/Users/nicolenair/_opam/bin/ocamlmklib.opt"
+#  ; env =
+#      map
+#        { "DUNE_OCAML_HARDCODED" : "/Users/nicolenair/_opam/lib"
+#        ; "DUNE_OCAML_STDLIB" : "/Users/nicolenair/_opam/lib/ocaml"
+#        ; "DUNE_SOURCEROOT" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler"
+#        ; "INSIDE_DUNE" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler/_build/default"
+#        ; "MANPATH" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler/_build/install/default/bin"
+#        ; "OCAMLFIND_IGNORE_DUPS_IN" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler/_build/install/default/lib"
+#        ; "OCAMLPATH" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler/_build/install/default/lib"
+#        ; "OCAMLTOP_INCLUDE_PATH" :
+#            "/Users/nicolenair/Desktop/CS/natural_language_compiler/_build/install/default/lib/toplevel"
+#        ; "OCAML_COLOR" : "always"
+#        ; "OPAMCOLOR" : "always"
+#        }
+#  ; findlib_paths = [ External "/Users/nicolenair/_opam/lib" ]
+#  ; arch_sixtyfour = true
+#  ; natdynlink_supported = true
+#  ; supports_shared_libraries = true
+#  ; ocaml_config =
+#      { version = "4.14.1"
+#      ; standard_library_default = "/Users/nicolenair/_opam/lib/ocaml"
+#      ; standard_library = "/Users/nicolenair/_opam/lib/ocaml"
+#      ; standard_runtime = "the_standard_runtime_variable_was_deleted"
+#      ; ccomp_type = "cc"
+#      ; c_compiler = "cc"
+#      ; ocamlc_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlc_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; ocamlopt_cflags =
+#          [ "-O2"; "-fno-strict-aliasing"; "-fwrapv"; "-pthread" ]
+#      ; ocamlopt_cppflags = [ "-D_FILE_OFFSET_BITS=64" ]
+#      ; bytecomp_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; bytecomp_c_libraries = [ "-lm"; "-lpthread" ]
+#      ; native_c_compiler =
+#          [ "cc"
+#          ; "-O2"
+#          ; "-fno-strict-aliasing"
+#          ; "-fwrapv"
+#          ; "-pthread"
+#          ; "-D_FILE_OFFSET_BITS=64"
+#          ]
+#      ; native_c_libraries = [ "-lm" ]
+#      ; native_pack_linker = [ "ld"; "-r"; "-o" ]
+#      ; cc_profile = []
+#      ; architecture = "amd64"
+#      ; model = "default"
+#      ; int_size = 63
+#      ; word_size = 64
+#      ; system = "macosx"
+#      ; asm = [ "cc"; "-c"; "-Wno-trigraphs" ]
+#      ; asm_cfi_supported = true
+#      ; with_frame_pointers = false
+#      ; ext_exe = ""
+#      ; ext_obj = ".o"
+#      ; ext_asm = ".s"
+#      ; ext_lib = ".a"
+#      ; ext_dll = ".so"
+#      ; os_type = "Unix"
+#      ; default_executable_name = "a.out"
+#      ; systhread_supported = true
+#      ; host = "x86_64-apple-darwin21.5.0"
+#      ; target = "x86_64-apple-darwin21.5.0"
+#      ; profiling = false
+#      ; flambda = false
+#      ; spacetime = false
+#      ; safe_string = true
+#      ; exec_magic_number = "Caml1999X031"
+#      ; cmi_magic_number = "Caml1999I031"
+#      ; cmo_magic_number = "Caml1999O031"
+#      ; cma_magic_number = "Caml1999A031"
+#      ; cmx_magic_number = "Caml1999Y031"
+#      ; cmxa_magic_number = "Caml1999Z031"
+#      ; ast_impl_magic_number = "Caml1999M031"
+#      ; ast_intf_magic_number = "Caml1999N031"
+#      ; cmxs_magic_number = "Caml1999D031"
+#      ; cmt_magic_number = "Caml1999T031"
+#      ; natdynlink_supported = true
+#      ; supports_shared_libraries = true
+#      ; windows_unicode = false
+#      }
+#  }
+$ (cd _build/default && /Users/nicolenair/_opam/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -a -o lib/compilib.cma lib/.compilib.objs/byte/compilib.cmo lib/.compilib.objs/byte/compilib__Asts.cmo lib/.compilib.objs/byte/compilib__Typeinferencer.cmo lib/.compilib.objs/byte/compilib__Parser.cmo lib/.compilib.objs/byte/compilib__Lexer.cmo lib/.compilib.objs/byte/compilib__Lambda.cmo lib/.compilib.objs/byte/compilib__Compiler.cmo)
+$ (cd _build/default && /Users/nicolenair/_opam/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -bin-annot -I bin/.main.eobjs/byte -I /Users/nicolenair/_opam/lib/base -I /Users/nicolenair/_opam/lib/base/base_internalhash_types -I /Users/nicolenair/_opam/lib/base/caml -I /Users/nicolenair/_opam/lib/base/md5 -I /Users/nicolenair/_opam/lib/base/shadow_stdlib -I /Users/nicolenair/_opam/lib/base_bigstring -I /Users/nicolenair/_opam/lib/base_quickcheck -I /Users/nicolenair/_opam/lib/base_quickcheck/ppx_quickcheck/runtime -I /Users/nicolenair/_opam/lib/bin_prot -I /Users/nicolenair/_opam/lib/bin_prot/shape -I /Users/nicolenair/_opam/lib/core -I /Users/nicolenair/_opam/lib/core/base_for_tests -I /Users/nicolenair/_opam/lib/core/validate -I /Users/nicolenair/_opam/lib/fieldslib -I /Users/nicolenair/_opam/lib/int_repr -I /Users/nicolenair/_opam/lib/jane-street-headers -I /Users/nicolenair/_opam/lib/parsexp -I /Users/nicolenair/_opam/lib/ppx_assert/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_bench/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_compare/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_enumerate/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_expect/collector -I /Users/nicolenair/_opam/lib/ppx_expect/common -I /Users/nicolenair/_opam/lib/ppx_expect/config -I /Users/nicolenair/_opam/lib/ppx_expect/config_types -I /Users/nicolenair/_opam/lib/ppx_hash/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_here/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_inline_test/config -I /Users/nicolenair/_opam/lib/ppx_inline_test/runtime-lib -I /Users/nicolenair/_opam/lib/ppx_log/types -I /Users/nicolenair/_opam/lib/ppx_module_timer/runtime -I /Users/nicolenair/_opam/lib/ppx_sexp_conv/runtime-lib -I /Users/nicolenair/_opam/lib/sexplib -I /Users/nicolenair/_opam/lib/sexplib0 -I /Users/nicolenair/_opam/lib/splittable_random -I /Users/nicolenair/_opam/lib/stdio -I /Users/nicolenair/_opam/lib/time_now -I /Users/nicolenair/_opam/lib/typerep -I /Users/nicolenair/_opam/lib/variantslib -I lib/.compilib.objs/byte -intf-suffix .ml -no-alias-deps -opaque -o bin/.main.eobjs/byte/dune__exe__Main.cmo -c -impl bin/main.ml)
+$ (cd _build/default && /Users/nicolenair/_opam/bin/ocamlopt.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -shared -linkall -I lib -o lib/compilib.cmxs lib/compilib.cmxa)
+$ (cd _build/default && /Users/nicolenair/_opam/bin/ocamlc.opt -w @1..3@5..28@30..39@43@46..47@49..57@61..62@67@69-40 -strict-sequence -strict-formats -short-paths -keep-locs -g -o bin/main.bc /Users/nicolenair/_opam/lib/base/base_internalhash_types/base_internalhash_types.cma /Users/nicolenair/_opam/lib/base/caml/caml.cma /Users/nicolenair/_opam/lib/sexplib0/sexplib0.cma /Users/nicolenair/_opam/lib/base/shadow_stdlib/shadow_stdlib.cma /Users/nicolenair/_opam/lib/base/base.cma /Users/nicolenair/_opam/lib/ppx_sexp_conv/runtime-lib/ppx_sexp_conv_lib.cma /Users/nicolenair/_opam/lib/ppx_compare/runtime-lib/ppx_compare_lib.cma /Users/nicolenair/_opam/lib/ppx_enumerate/runtime-lib/ppx_enumerate_lib.cma /Users/nicolenair/_opam/lib/ppx_hash/runtime-lib/ppx_hash_lib.cma /Users/nicolenair/_opam/lib/ppx_here/runtime-lib/ppx_here_lib.cma /Users/nicolenair/_opam/lib/ppx_assert/runtime-lib/ppx_assert_lib.cma /Users/nicolenair/_opam/lib/ppx_bench/runtime-lib/ppx_bench_lib.cma /Users/nicolenair/_opam/lib/base/md5/md5_lib.cma /Users/nicolenair/_opam/lib/ocaml/unix.cma /Users/nicolenair/_opam/lib/ocaml/bigarray.cma /Users/nicolenair/_opam/lib/fieldslib/fieldslib.cma /Users/nicolenair/_opam/lib/variantslib/variantslib.cma /Users/nicolenair/_opam/lib/bin_prot/shape/bin_shape_lib.cma /Users/nicolenair/_opam/lib/bin_prot/bin_prot.cma /Users/nicolenair/_opam/lib/ppx_inline_test/config/inline_test_config.cma /Users/nicolenair/_opam/lib/jane-street-headers/jane_street_headers.cma /Users/nicolenair/_opam/lib/time_now/time_now.cma /Users/nicolenair/_opam/lib/ppx_inline_test/runtime-lib/ppx_inline_test_lib.cma /Users/nicolenair/_opam/lib/stdio/stdio.cma /Users/nicolenair/_opam/lib/ppx_module_timer/runtime/ppx_module_timer_runtime.cma /Users/nicolenair/_opam/lib/typerep/typerep_lib.cma /Users/nicolenair/_opam/lib/ppx_expect/common/expect_test_common.cma /Users/nicolenair/_opam/lib/ppx_expect/config_types/expect_test_config_types.cma /Users/nicolenair/_opam/lib/ppx_expect/collector/expect_test_collector.cma /Users/nicolenair/_opam/lib/ppx_expect/config/expect_test_config.cma /Users/nicolenair/_opam/lib/parsexp/parsexp.cma /Users/nicolenair/_opam/lib/sexplib/sexplib.cma /Users/nicolenair/_opam/lib/ppx_log/types/ppx_log_types.cma /Users/nicolenair/_opam/lib/splittable_random/splittable_random.cma /Users/nicolenair/_opam/lib/base_quickcheck/base_quickcheck.cma /Users/nicolenair/_opam/lib/base_quickcheck/ppx_quickcheck/runtime/ppx_quickcheck_runtime.cma /Users/nicolenair/_opam/lib/int_repr/int_repr.cma /Users/nicolenair/_opam/lib/base_bigstring/base_bigstring.cma /Users/nicolenair/_opam/lib/core/base_for_tests/base_for_tests.cma /Users/nicolenair/_opam/lib/core/validate/validate.cma /Users/nicolenair/_opam/lib/core/core.cma lib/compilib.cma bin/.main.eobjs/byte/dune__exe__Main.cmo)

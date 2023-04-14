@@ -1,4 +1,5 @@
 (executable
  (public_name main)
  (name main)
- (libraries compilib core))
+ (libraries compilib core)
+ (modes byte exe))
