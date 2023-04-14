@@ -49,7 +49,7 @@ type phrase =
   | ADJ of adjective
   | ADJCN of phrase * phrase (* adj cn / adj cn *)
   | ISNVP of phrase (* cn/rcn/trcn *)
-  | ISADJVP of adjective (* adj *)
+  | ISADJVP of phrase (* adj *)
 
   (* to add:
     - S(CN, is a CN/rcn/trcn/adjcn)
@@ -137,5 +137,5 @@ let rec string_of_phrase (p : phrase) : string =
   | ADJ adj -> "ADJ(" ^ string_of_adj adj ^ ")"
   | ADJCN (adj, n) -> "ADJCN(" ^ string_of_phrase adj ^ "," ^ string_of_phrase n ^ ")"
   | ISNVP n -> "ISNVP(" ^ string_of_phrase n ^ ")"
-  | ISADJVP adj -> "ISADJVP(" ^ string_of_adj adj ^ ")"
+  | ISADJVP adj -> "ISADJVP(" ^ string_of_phrase adj ^ ")"
 ;;

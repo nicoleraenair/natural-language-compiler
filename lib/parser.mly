@@ -30,8 +30,7 @@ open Asts
 %token IS
 %token EOF
 
-%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_verb, verb_phrase
-%type <Asts.adjective> adjective
+%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_verb, verb_phrase, adjective
 %start input
 
 %%
@@ -45,7 +44,7 @@ input:
   | det = determiner; EOF { det }
   | cn = common_noun; EOF { cn }
   | pn = proper_noun; EOF { pn }
-  | adj = adjective; EOF { ADJ adj }
+  | adj = adjective; EOF { adj }
   ;
 
 sentence:
@@ -102,10 +101,10 @@ common_noun:
   | LAWYER { CN Lawyer }
   | ENGINEER { CN Engineer }
   | FILMMAKER { CN Filmmaker }
-  | adj = adjective; cn = common_noun { ADJCN (ADJ adj, cn) }
+  | adj = adjective; cn = common_noun { ADJCN (adj, cn) }
 
 adjective: 
-  | CLEVER { Clever }
-  | SLEEPY { Sleepy }
-  | FUNNY { Funny }
-  | GRUMPY { Grumpy }
+  | CLEVER { ADJ Clever }
+  | SLEEPY { ADJ Sleepy }
+  | FUNNY { ADJ Funny }
+  | GRUMPY { ADJ Grumpy }

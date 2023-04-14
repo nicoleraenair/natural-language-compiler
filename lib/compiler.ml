@@ -20,7 +20,7 @@ let fresh_name (prefix : string) : string =
     _pletter := (p + 1) mod 26;
     _pprime := n ^ (if p = 25 then "'" else "");
     (Char.escaped (Char.chr (((p+15)mod 26) + 65))) ^ n
-  | _ -> prefix
+  | _ -> failwith "Invalid variable type"
 ;;
 
 let compile_det (det : determiner) : Lambda.expr = 
@@ -62,14 +62,12 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     let y = fresh_name "x" in
     Lambda(x, Conjunction(Application(compile_phrase cn, Var x), Application (compile_phrase np, Lambda (y, Application (
       Application (compile_phrase tv, Var x), Var y)))))
-  | ADJ adj -> let x = fresh_name "x" in
-    let p = fresh_name "P" in
-    Lambda(p, Lambda(x, Conjunction(Predicate(string_of_adj adj, [Var x]), Application(Var p, Var x))))
-  | ADJCN (adj, cn) -> Application(compile_phrase adj, compile_phrase cn)
   | PN pn -> Var (string_of_pn pn)
   | ISNVP n -> compile_phrase n
-  | ISADJVP adj -> let x = fresh_name "x" in
-    Lambda (x, Predicate(string_of_adj adj, [Var x]))
+  | ADJ adj -> let x = fresh_name "x" in Lambda (x, Predicate(string_of_adj adj, [Var x]))
+  | ADJCN (adj, cn) -> let x = fresh_name "x" in
+    Lambda(x, Conjunction(Application(compile_phrase adj, Var x), Application(compile_phrase cn, Var x)))
+  | ISADJVP adj -> compile_phrase adj
 ;;
 
 let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 
@@ -98,6 +96,6 @@ let rec reduce (e : Lambda.expr) : Lambda.expr =
   | Implication (e1, e2) -> Implication (reduce e1, reduce e2)
   | Negation e1 -> Negation (reduce e1)
   | Application (e1, e2) -> (match (reduce e1) with 
-    | Lambda (x, b) -> reduce (substitute x (reduce e2) b)
-    | _ -> Application (reduce e1, reduce e2))
+  | Lambda (x, b) -> reduce (substitute x (reduce e2) b)
+  | _ -> Application (reduce e1, reduce e2))
 ;;
