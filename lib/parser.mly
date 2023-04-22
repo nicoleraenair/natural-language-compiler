@@ -30,7 +30,7 @@ open Asts
 %token IS
 %token EOF
 
-%type <Asts.phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_verb, verb_phrase, adjective
+%type <phrase> input, common_noun, determiner, intransitive_verb, noun_phrase, proper_noun, relative_common_noun, sentence, transitive_verb, verb_phrase, adjective
 %start input
 
 %%
