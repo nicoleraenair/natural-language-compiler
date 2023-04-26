@@ -86,7 +86,21 @@ eval $(opam env)
 
 ## Usage
 
-- gif of above example
+Running the program launches a command-line interface and prints a set of simple instructions to the terminal:
+
+<img width="697" alt="Screen Shot 2023-04-26 at 6 32 10 PM" src="https://user-images.githubusercontent.com/63452077/234717096-b2f455ec-d3cf-496d-832f-97b4877d3dc0.png">
+
+As stated in the instructions, the user can enter `grammar` in order to display the toy language grammar and an example sentence that can be translated:
+
+<img width="697" alt="Screen Shot 2023-04-26 at 6 20 53 PM" src="https://user-images.githubusercontent.com/63452077/234716106-4c9b5434-da93-41d8-921b-1a894598154a.png">
+
+When a phrase is entered, the lambda calculus denotation as well as the semantic type of the phrase are printed:
+
+<img width="697" alt="Screen Shot 2023-04-26 at 6 21 07 PM" src="https://user-images.githubusercontent.com/63452077/234716234-ab3853bf-8c64-421a-9107-3191683b70b8.png">
+
+Entering a phrase that violates the syntactic rules of the toy language or uses words that are either misspelled or not in the toy language will produce the corresponding error messages (with the latter case taking precedence, so a synactically nonsensical phrase with a misspelled word will produce an invalid word error):
+
+<img width="697" alt="Screen Shot 2023-04-26 at 6 29 02 PM" src="https://user-images.githubusercontent.com/63452077/234716842-2240337e-b0e5-4c4d-ae06-37e93655442d.png">
 
 ## Extensions
 
