@@ -2,8 +2,6 @@ open Asts
 open Lambda
 
 exception TypeMismatch;;
-
-(*cite palmer for freshening code, edit to make nicer looking eg P, P', P''..., vars + predicates + ?functions *)
 let _pletter = ref 0;;
 let _pprime = ref "";;
 let _xletter = ref 0;;
