@@ -14,7 +14,7 @@ let translate (ast : Asts.phrase) =
 ;;
 
 let print_grammar () = 
-  printf "Here is the context-free grammar for the toy language supported by this tool:\n\n\tS -> NP VP\n\tNP -> PN | DET CN | DET RCN\n\tVP -> IV | TV NP | is ADJ | is a CN | is a RCN\n\tCN -> mathematician | filmmaker | lawyer | engineer | ADJ CN\n\tRCN -> CN that VP | CN that NP TV\n\tIV -> studies | sleeps | eats | swims\n\tTV -> loves | hates | teaches | knows\n\tADJ -> clever | sleepy | funny | grumpy\n\tPN -> Alex | Caleb | Christie | Lauren\n\tDET -> a | every | some | no\n\nTry entering a sentence like: \"Every clever mathematician that Alex loves hates a filmmaker that is grumpy\"
+  printf "Here is the context-free grammar for the toy language supported by this tool:\n\n\tS -> NP VP\n\tNP -> PN | DET CN | DET RCN\n\tVP -> IV | TV NP | is ADJ | is a CN | is a RCN\n\tCN -> mathematician | filmmaker | lawyer | engineer | ADJ CN\n\tRCN -> CN that VP | CN that NP TV\n\tIV -> studies | sleeps | eats | swims\n\tTV -> loves | hates | teaches | knows\n\tADJ -> clever | sleepy | funny | grumpy\n\tPN -> Alex | Caleb | Christie | Lauren\n\tDET -> a | every | some | no\n\nTry entering a sentence like: \"Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims\"
   "
 ;;
 

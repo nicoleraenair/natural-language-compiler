@@ -36,7 +36,7 @@ DET -> a | every | some | no
 PN -> Alex | Caleb | Christie | Lauren
 ```
 
-The following table lists the various phrases included in the language and how they can be constructed from the grammar above.
+The following table lists the various phrases included in the language and examples of how they can be constructed from the grammar above.
 
 | Phrase Type | Abbreviation | Example|
 | - | - | - |
@@ -54,7 +54,7 @@ The following table lists the various phrases included in the language and how t
 Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
 
 ### Semantic Model
-- this project creates a unified semantic model for computing types and denotations for a subset of english
+This project creates a unified semantic model for computing the types and denotations (lambda calculus/predicate logic translations) for phrases in this toy language.
 - table with denotations for all phrase types (from cfg) + example from toy language + types ("Every clever mathematician that Alex loves hates a filmmaker that is grumpy" - build up each part)
 
 ## Implementation
@@ -82,7 +82,7 @@ eval $(opam env)
 
 5. Finally, to run the program, either
 - clone this repo and run with `dune` or `make run`, OR
-- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1RCSNvgDAjuDPD0fXjg9f8YGZG4jVjf88/view?usp=sharing) and run with `ocamlrun main.bc`.
+- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1Z__ZGe8doHst5BGAcg2UhfVKyjmrAbcp/view?usp=sharing) and run with `ocamlrun main.bc`.
 
 ## Usage
 
