@@ -25,6 +25,10 @@ let rec main_loop () =
   | Some "exit" -> exit (0)
   | Some "grammar" -> print_grammar (); main_loop ()
   | Some phrase ->
+      Compiler._xletter := 0;
+      Compiler._xprime := "";
+      Compiler._pletter := 0;
+      Compiler._pprime := "";
       (try
         let ast = parse phrase in 
         translate ast;
