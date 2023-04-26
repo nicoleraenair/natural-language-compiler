@@ -21,7 +21,7 @@
 - This formal system effectively models natural language semantics, as described below, and so this project automates the translation of natural language phrases into a simply typed lambda calculus.
 
 ### Toy Language
-Modelling the entire English language with lambda calculus is outside the scope of this project. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is specified by the following context-free grammar:
+Translating the entire English language into lambda calculus is outside the scope of this project. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
 
 ```
 S -> NP VP
@@ -36,29 +36,20 @@ DET -> a | every | some | no
 PN -> Alex | Caleb | Christie | Lauren
 ```
 
-This language includes
-- PN: proper nouns (eg. Alex)
-- DET: determiners (eg. every)
-- ADJ: adjectives (eg. clever)
-- IV: instransitive verbs (eg. swims)
-- TV: transitive verbs (eg. loves)
-- CN: common nouns, that are
-    - terminal (eg. filmmaker), or
-    - made up of an ADJ followed by another CN (eg. funny lawyer)
-- RCN: relative clause common nouns, that are
-    - made up of a CN, "that", and a VP (eg. mathematician that sleeps, lawyer that loves Lauren)
-    - made up of a CN, "that", an NP, and a VP (eg. lawyer that Lauren loves)
-- NP: noun phrases, that are
-    - proper nouns (eg. Christie)
-    - made up of a DET and a CN (eg. every filmmaker)
-    - made up of a DET and a RCN (eg. a lawyer that swims)
-- VP: verb phrases, that are
-    - intransitive verbs
-    - made up of a TV and an NP (eg. teaches Caleb)
-    - made up of "is" and an ADJ (eg. is grumpy)
-    - made up of "is a" and a CN (eg. is a filmmaker)
-    - made up of "is a" and a RCN (eg. is a lawyer that eats)
-- S: sentences, that are made up of a NP and a VP (eg. Alex swims)
+The following table lists the various phrases included in the language and how they can be constructed from the grammar above.
+
+| Phrase Type | Abbreviation | Example|
+| - | - | - |
+| proper noun | PN | Alex |
+| determiner | DET | every |
+| adjective | ADJ | clever |
+| instransitive verb | IV | swims |
+| transitive verb | TV | loves |
+| common noun | CN | filmmaker, <br> ADJ CN: funny lawyer |
+| relative clause common noun | RCN | CN that VP: mathematician that sleeps, lawyer that loves Lauren <br> CN that NP VP: lawyer that Lauren loves |
+| noun phrase | NP | PN: Christie <br> DET CN: every filmmaker <br> DET RCN: a lawyer that swims|
+| verb phrase | VP | IV: sleeps <br> TV NP: teaches Caleb <br> is ADJ: is grumpy <br> is a CN: is a filmmaker <br> is a RCN: is a lawyer that eats |
+| sentence | S | NP VP: Alex swims |
 
 Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
 
