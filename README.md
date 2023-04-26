@@ -2,9 +2,10 @@
 
 ## Description
 
-- what it does
-- how it is implemented
-- what problem it solves
+### TODO
+
+- what it does - translates natural language phrases (from a toy subset of english) into their lambda calculus and predicate logic representations (denotations) and determines their semantic types
+- what problem it solves - generalizes theory, automates computation of denotations and types, 
 
 ## Table of Contents
 - [Theoretical Background](#theoretical-background)
@@ -17,11 +18,12 @@
 
 ## Theoretical Background
 ### Simply Typed Lambda Calculus
+### TODO
 - basic explanation of lambda calculus, conversion, etc.
 - This formal system effectively models natural language semantics, as described below, and so this project automates the translation of natural language phrases into a simply typed lambda calculus.
 
 ### Toy Language
-Translating the entire English language into lambda calculus is outside the scope of this project. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
+Translating the entire English language into lambda calculus is outside the scope of this project. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
 
 ```
 S -> NP VP
@@ -54,10 +56,15 @@ The following table lists the various phrases included in the language and examp
 Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
 
 ### Semantic Model
+### TODO
 This project creates a unified semantic model for computing the types and denotations (lambda calculus/predicate logic translations) for phrases in this toy language.
 - table with denotations for all phrase types (from cfg) + example from toy language + types ("Every clever mathematician that Alex loves hates a filmmaker that is grumpy" - build up each part)
 
 ## Implementation
+### TODO
+- ocaml, lexing and parsing with ocamllex and menhir, uses core library
+- explain lexing, parsing, language asts, compiling, lambda ast, lambda calculus interpreter for reduction, various pretty printers, command-line interface
+- highlight skills learned + implementation details for a nontechnical audience
 
 ## Installation
 
@@ -98,5 +105,5 @@ In addition to full sentences, individual words or phrases can also be translate
 <img width="697" alt="Screen Shot 2023-04-26 at 6 39 02 PM" src="https://user-images.githubusercontent.com/63452077/234717916-e724497d-224e-40c8-bee1-1da8d143a779.png">  
 
 ## Extensions
+### TODO
 
-- 
