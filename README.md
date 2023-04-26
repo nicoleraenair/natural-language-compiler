@@ -30,7 +30,7 @@
 
 ## Installation
 
-1. To install `opam`, find platform-specific installation instructions [here](https://opam.ocaml.org/doc/Install.html) or copy the following into your terminal:
+1. To install `opam`, find platform-specific installation instructions [here](https://opam.ocaml.org/doc/Install.html) OR copy the following into your terminal:
 ```bash
 bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/shell/install.sh)"
 ```
@@ -50,7 +50,7 @@ eval $(opam env)
 ```
 
 5. Finally, to run the program, either
-- clone this repo and run with `dune` or `make run`, or
+- clone this repo and run with `dune` or `make run`, OR
 - download a bytecode executable version of this project [here](https://drive.google.com/file/d/1RCSNvgDAjuDPD0fXjg9f8YGZG4jVjf88/view?usp=sharing) and run with `ocamlrun main.bc`.
 
 ## Usage
