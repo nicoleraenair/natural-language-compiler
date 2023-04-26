@@ -2,7 +2,7 @@
 open Lexing
 open Parser
 
-exception SyntaxError of string
+exception SyntaxError
 }
 
 
@@ -50,5 +50,5 @@ rule read =
   | "funny" {FUNNY}
   | "grumpy" {GRUMPY}
   | "is" {IS}
-  | _ { raise (SyntaxError ("Invalid lexeme entered: " ^ Lexing.lexeme lexbuf)) }
+  | _ { raise SyntaxError }
   | eof      { EOF }

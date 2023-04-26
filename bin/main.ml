@@ -25,15 +25,15 @@ let rec main_loop () =
   | None -> main_loop ()
   | Some "exit" -> exit (0)
   | Some "grammar" -> print_grammar (); main_loop ()
-  | Some phrase -> 
+  | Some phrase ->
       (try
         let ast = parse phrase in 
         translate ast;
       with
-      | Lexer.SyntaxError msg ->
-        printf "%s\n" msg;
-      |  Parser.Error ->
-        printf "Invalid phrase entered.\n";);
+      | Lexer.SyntaxError ->
+        printf "Invalid word entered.\n";
+      | Parser.Error ->
+        printf "Invalid syntax.\n";);
       main_loop ()
 ;;
 
