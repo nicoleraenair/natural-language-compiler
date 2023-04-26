@@ -8,7 +8,6 @@ let parse (phrase : string) : Asts.phrase =
 
 let translate (ast : Asts.phrase) =
   let lambda_expr =  Compiler.reduce (Compiler.compile_phrase ast) in
-  printf "\nSyntax Tree: %s\n" (Asts.string_of_phrase ast);
   printf "Denotation: %s\n" (Lambda.string_of_lambda lambda_expr);
   printf "Semantic Type: %s\n" (Typeinferencer.type_of ast);
 ;;
