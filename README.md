@@ -58,7 +58,7 @@ To obtain the denotation of "Alex swims", we simply apply that of "Alex" to that
 $$[λP.P(a)] ([λx.swim(x)]).$$
 To simplify this expression, we then substitute $[λx.swim(x)]$ into the input variable $P$ of $[λP.P(a)]$, to obtain
 $$[λx.swim(x)] (a).$$
-Finally, we substitute $a$ into the input variable $x$ of the function, to obstain
+Finally, we substitute $a$ into the input variable $x$ of the function, to obtain
 $$swim(a).$$
 In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
