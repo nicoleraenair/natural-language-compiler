@@ -61,10 +61,9 @@ $$[λx.swim(x)] (a).$$
 Finally, we substitute $a$ into the input variable $x$ of the function, to obtain
 $$swim(a).$$
 Hence "Alex swims" is denoted by $swim(a)$. We can also determine the types of these denotations as follows:
-- "Alex swims" is represented by a predicate logic sentence, so it has type $t$
-- "swims" is represented by the function $[λx.swim(x)]$ that takes in an entity ($x$) and produces a predicate logic sentence ($swims(x)$), so it has type $<e,t>$ denoting a function with an entity input and sentence output
-- "Alex" is represented by the function $[λP.P(a)]$ that takes in a function $P$ of type $<e,t>$ (as shown above) and produces a predicate logic sentence ($P(a)$), so it has type $<<e,t>,t>$ denoting a function with an input of type $<e,t>$ and output of type $t$
-
+- "Alex swims" is represented by a predicate logic complete sentence, so it has type $t$
+- "swims" is represented by the function $[λx.swim(x)]$ that takes in an entity $x$ and produces a predicate logic sentence $swims(x)$ of type $t$ (as stated above), so it has type $< e, t >$ denoting a function with an $e$ (entity) input and $t$ (sentence) output
+- "Alex" is represented by the function $[λP.P(a)]$ that takes in a function $P$ of type $< e, t >$ (as shown above) and produces a predicate logic sentence $P(a)$, so it has type $<< e, t >, t >$ denoting a function with an input of type $< e, t >$ and output of type $t$
 
 In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
