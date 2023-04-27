@@ -2,10 +2,9 @@
 
 ## Description
 
-### TODO
+This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). 
 
-- what it does - translates natural language phrases (from a toy subset of english) into their lambda calculus and predicate logic representations (denotations) and determines their semantic types
-- what problem it solves - generalizes theory, automates computation of denotations and types, 
+[Link to Paper]()
 
 ## Table of Contents
 - [Predicate Logic](#predicate-logic)
