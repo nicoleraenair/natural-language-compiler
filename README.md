@@ -50,27 +50,17 @@ Predicate logic allows us to model complete sentences, but we can use the lambda
 
 For example, the abstraction [$λx.x+1$] represents a function that takes in a number and returns a number (so its type can be thought of as <number, number>), and the application $[λx.x+1] (2)$ applies the function to $2$, simplifying to $2 + 1 = 3$. 
 
-This project implements a unified semantic model for computing the types and lambda calculus denotations for natural language phrases. As an illustration of how lambda calculus can be applied to natural language semantics, consider the sentence "Alex knows Bob". We can represent each word of this sentence as lambda abstractions as follows:
+This project implements a unified semantic model for computing the types and lambda calculus denotations for natural language phrases. As a simple illustration of how lambda calculus can be applied to natural language semantics, consider the sentence "Alex swims". We can represent each word of this sentence as lambda abstractions as follows:
 - "Alex" -> $[λP.P(a)]$
-- "Bob" -> $[λQ.Q(b)]$
-- "knows" -> $[λy.[λx.knows(x,y)]]$
+- "swims" -> $[λx.swim(x)]$
 
-We can get the verb phrase "knows Bob" by lambda application - we apply the representation of "Bob" to that of "knows":
-- "knows Bob" -> $[λQ.Q(b)][λy.[λx.knows(x,y)]]$
-
-To simplify this expression, we then substitute "knows" for the input variable $Q$ of "Bob":
-$$[λQ.Q(b)][λy.[λx.knows(x,y)]] = [λy.[λx.knows(x,y)]](b)$$
-This produces the application of "knows" to the constant $b$, which we can simplify by substituting $b$ into the function as its first input variable $y$:
-$$[λy.[λx.knows(x,y)]](b) = [λx.knows(x,b)]$$
-Given this representation of "knows Bob", we can now compute "Alex knows Bob" by applying "Alex" to "knows Bob":
-- "Alex knows Bob" -> $[λP.P(a)]([λx.knows(x,b)])$
-
-Simplifying, we get
-$$[λP.P(a)]([λx.knows(x,b)]) = [λx.knows(x,b)](a) = knows(a,b)
-$$
-and hence the representation of "Alex knows Bob" is $knows(a,b)$. In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventuall sentences.
-
-For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
+To obtain the denotation of "Alex swims", we simply apply that of "Alex" to that of "swims", to obtain the lambda application
+$$[λP.P(a)] ([λx.swim(x)]).$$
+To simplify this expression, we then substitue $[λx.swim(x)]$ into the input variable $P$ of $[λP.P(a)]$, to obtain
+$$[λx.swim(x)](a).$$
+Finally, we substitute $a$ into the input variable $x$ of the function, to obstian
+$$swim(a).$$
+In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventuall sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
 ## Toy Language
 This project automates the translation of natural language phrases into the formal language of predicate logic and lambda calculus, but translating the entire English language is outside its scope. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
