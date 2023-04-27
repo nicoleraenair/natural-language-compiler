@@ -57,8 +57,8 @@ This project implements a unified semantic model for computing the types and lam
 To obtain the denotation of "Alex swims", we simply apply that of "Alex" to that of "swims", to obtain the lambda application
 $$[λP.P(a)] ([λx.swim(x)]).$$
 To simplify this expression, we then substitue $[λx.swim(x)]$ into the input variable $P$ of $[λP.P(a)]$, to obtain
-$$[λx.swim(x)](a).$$
-Finally, we substitute $a$ into the input variable $x$ of the function, to obstian
+$$[λx.swim(x)] (a).$$
+Finally, we substitute $a$ into the input variable $x$ of the function, to obstain
 $$swim(a).$$
 In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventuall sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
