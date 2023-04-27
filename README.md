@@ -2,7 +2,13 @@
 
 ## Description
 
-This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). 
+This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types).
+
+Technical aspects: 
+- lexing and parsing using ocamllex and menhir
+- a novel compiler that automates the computation of lambda calculus types, denotations, and derivations for fundamental syntax structures
+- a lambda calculus interpreter that automates lambda reductions
+- a command-line user interface implemented using the Core library
 
 [Link to Paper]()
 
@@ -10,7 +16,6 @@ This natural language compiler translates words, phrases, and sentences from a s
 - [Predicate Logic](#predicate-logic)
 - [Lambda Calculus](#lambda-calculus)
 - [Toy Language](#toy-language)
-- [Implementation](#implementation)
 - [Installation](#installation)
 - [Usage](#usage)
 
@@ -99,12 +104,6 @@ The following table lists the various phrases included in the language and examp
 | sentence | S | NP VP: Alex swims |
 
 Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`. The compiler is also highly extensible, and can be modified easily to add words to the toy vocabulary (eg. adding different names or common nouns) or expand the language to include more syntactic structures (eg. conjunctions, negation, pronouns, modal verbs, punctuation, prepositions, etc.).
-
-## Implementation
-### TODO
-- ocaml, lexing and parsing with ocamllex and menhir, uses core library
-- explain lexing, parsing, language asts, compiling, lambda ast, lambda calculus interpreter for reduction, various pretty printers, command-line interface
-- highlight skills learned + implementation details for a nontechnical audience
 
 ## Installation
 
