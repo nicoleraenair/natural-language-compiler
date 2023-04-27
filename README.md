@@ -8,22 +8,73 @@
 - what problem it solves - generalizes theory, automates computation of denotations and types, 
 
 ## Table of Contents
-- [Theoretical Background](#theoretical-background)
-    - [Simply Typed Lambda Calculus](#simply-typed-lambda-calculus)
-    - [Toy Language](#toy-language)
-    - [Semantic Model](#semantic-model)
+- [Predicate Logic](#predicate-logic)
+- [Lambda Calculus](#lambda-calculus)
+- [Toy Language](#toy-language)
 - [Implementation](#implementation)
 - [Installation](#installation)
 - [Usage](#usage)
 
-## Theoretical Background
-### Simply Typed Lambda Calculus
-### TODO
-- basic explanation of lambda calculus, conversion, etc.
-- This formal system effectively models natural language semantics, as described below, and so this project automates the translation of natural language phrases into a simply typed lambda calculus.
+## Predicate Logic
+Predicate logic is a formal logical language whose vocabulary includes individual constants, individual variables, predicates, logical operators, and quantifiers. Here are examples of how this system can model natural language sentences:
+- Individual constants refer to specific entities
+    - **a** could represent an entity named Alex
+    - **b** could represent an entity named Bob
+    - etc.
+- Predicates refer to the attributes and actions of individuals
+    - swims(**a**) represents the sentence "Alex swims"
+    - knows(**a**,**b**) represents "Alex knows Bob"
+    - old(**a**) respresents "Alex is old"
+    - etc.
+- Logical operators include ¬ (NOT), ∧ (AND), ∨ (OR), → (IF...THEN)
+    - swims(**a**) ∧ old(**a**) represents "Alex swims and Alex is old"
+    - swims(**a**) ∨ swims(**b**) represents "Alex swims or Bob swims", i.e. "Either Alex or Bob swims"
+    - old(**a**) → old(**b**) represents "If Alex is old, then Bob is old"
+    - ¬knows(**a**,**b**) represents "Alex does not know Bob"
+- Qauntifiers include ∀ (for all), ∃ (there exists) and can be used with individual variables can be used to model more general statements as follows
+    - ∀x(swims(x)) represents "For all x, x swims", i.e. "Everyone swims"
+    - ∃y(knows(**b**,y)) represents "There exists y such that Bob knows y", i.e. "Bob knows someone"
+    - ∀p(∃q(knows(p,q))) represents "For all p, there exists q such that p knows q", i.e. "Everyone knows someone"
+    - ∀p(politician(p)→evil(p)) represents "For all p, if p is a politician then p is evil", i.e. "Every politician is evil"
 
-### Toy Language
-Translating the entire English language into lambda calculus is outside the scope of this project. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
+These logical symbols can all be combined to create complex sentences. For example, consider the PredL sentence
+
+`∀x(((mathematician(x) ∧ loves(Alex,x)) → ∃y((filmmaker(y) ∧ swims(y) ∧ hates(x,y)))))`.  
+
+This represents the sentence "For all x, if x is a mathematician and Alex loves x, then there exists y such that y is a filmmaker, y swims, and x hates y". In other words, "Every mathematician that Alex loves hates a filmmaker that swims".
+
+## Lambda Calculus
+
+Predicate logic allows us to model complete sentences, but we can use the lambda calculus to model even more types of phrases. The syntax of the lambda calculus includes all predicate logic sentences as well as new constructions called lambda abstractions and applications:
+- Abstractions are of the form [$λx.e$], representing a function that takes $x$ as an input and outputs $e$.
+- Applications are of the form $P (Q)$, representing the application of the function $P$ to the input $Q$.
+
+For example, the abstraction [$λx.x+1$] represents a function that takes in a number and returns a number (so its type can be thought of as <number, number>), and the application $[λx.x+1] (2)$ applies the function to $2$, simplifying to $2 + 1 = 3$. 
+
+This project implements a unified semantic model for computing the types and lambda calculus denotations for natural language phrases. As an illustration of how lambda calculus can be applied to natural language semantics, consider the sentence "Alex knows Bob". We can represent each word of this sentence as lambda abstractions as follows:
+- "Alex" -> $[λP.P(a)]$
+- "Bob" -> $[λQ.Q(b)]$
+- "knows" -> $[λy.[λx.knows(x,y)]]$
+
+We can get the verb phrase "knows Bob" by lambda application - we apply the representation of "Bob" to that of "knows":
+- "knows Bob" -> $[λQ.Q(b)][λy.[λx.knows(x,y)]]$
+
+To simplify this expression, we then substitute "knows" for the input variable $Q$ of "Bob":
+$$[λQ.Q(b)][λy.[λx.knows(x,y)]] = [λy.[λx.knows(x,y)]](b)$$
+This produces the application of "knows" to the constant $b$, which we can simplify by substituting $b$ into the function as its first input variable $y$:
+$$[λy.[λx.knows(x,y)]](b) = [λx.knows(x,b)]$$
+Given this representation of "knows Bob", we can now compute "Alex knows Bob" by applying "Alex" to "knows Bob":
+- "Alex knows Bob" -> $[λP.P(a)]([λx.knows(x,b)])$
+
+Simplifying, we get
+$$[λP.P(a)]([λx.knows(x,b)]) = [λx.knows(x,b)](a) = knows(a,b)
+$$
+and hence the representation of "Alex knows Bob" is $knows(a,b)$. In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventuall sentences.
+
+For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
+
+## Toy Language
+This project automates the translation of natural language phrases into the formal language of predicate logic and lambda calculus, but translating the entire English language is outside its scope. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
 
 ```
 S -> NP VP
@@ -54,11 +105,6 @@ The following table lists the various phrases included in the language and examp
 | sentence | S | NP VP: Alex swims |
 
 Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
-
-### Semantic Model
-### TODO
-This project creates a unified semantic model for computing the types and denotations (lambda calculus/predicate logic translations) for phrases in this toy language.
-- table with denotations for all phrase types (from cfg) + example from toy language + types ("Every clever mathematician that Alex loves hates a filmmaker that is grumpy" - build up each part)
 
 ## Implementation
 ### TODO
