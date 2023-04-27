@@ -17,30 +17,30 @@ This natural language compiler translates words, phrases, and sentences from a s
 ## Predicate Logic
 Predicate logic is a formal logical language whose vocabulary includes individual constants, individual variables, predicates, logical operators, and quantifiers. Here are examples of how this system can model natural language sentences:
 - Individual constants refer to specific entities
-    - **a** could represent an entity named Alex
-    - **b** could represent an entity named Bob
+    - $a$ could represent an entity named Alex
+    - $b$ could represent an entity named Bob
     - etc.
 - Predicates refer to the attributes and actions of individuals
-    - swims(**a**) represents the sentence "Alex swims"
-    - knows(**a**,**b**) represents "Alex knows Bob"
-    - old(**a**) respresents "Alex is old"
+    - $swims(a)$ represents the sentence "Alex swims"
+    - $knows(a,b)$ represents "Alex knows Bob"
+    - $old(a)$ respresents "Alex is old"
     - etc.
 - Logical operators include ¬ (NOT), ∧ (AND), ∨ (OR), → (IF...THEN)
-    - swims(**a**) ∧ old(**a**) represents "Alex swims and Alex is old"
-    - swims(**a**) ∨ swims(**b**) represents "Alex swims or Bob swims", i.e. "Either Alex or Bob swims"
-    - old(**a**) → old(**b**) represents "If Alex is old, then Bob is old"
-    - ¬knows(**a**,**b**) represents "Alex does not know Bob"
-- Qauntifiers include ∀ (for all), ∃ (there exists) and can be used with individual variables can be used to model more general statements as follows
-    - ∀x(swims(x)) represents "For all x, x swims", i.e. "Everyone swims"
-    - ∃y(knows(**b**,y)) represents "There exists y such that Bob knows y", i.e. "Bob knows someone"
-    - ∀p(∃q(knows(p,q))) represents "For all p, there exists q such that p knows q", i.e. "Everyone knows someone"
-    - ∀p(politician(p)→evil(p)) represents "For all p, if p is a politician then p is evil", i.e. "Every politician is evil"
+    - $swims(a) ∧ old(a)$ represents "Alex swims and Alex is old"
+    - $swims(a) ∨ swims(b)$ represents "Alex swims or Bob swims", i.e. "Either Alex or Bob swims"
+    - $old(a) → old(b)$ represents "If Alex is old, then Bob is old"
+    - $¬knows(a,b)$ represents "Alex does not know Bob"
+- Qauntifiers include $∀$ (for all), $∃$ (there exists) and can be used with individual variables can be used to model more general statements as follows
+    - $∀x(swims(x))$ represents "For all $x$, $x$ swims", i.e. "Everyone swims"
+    - $∃y(knows(b,y))$ represents "There exists $y$ such that Bob knows $y$", i.e. "Bob knows someone"
+    - $∀p(∃q(knows(p,q)))$ represents "For all $p$, there exists $q$ such that $p$ knows $q$", i.e. "Everyone knows someone"
+    - $∀p(politician(p)→evil(p))$ represents "For all $p$, if $p$ is a politician then $p$ is evil", i.e. "Every politician is evil"
 
 These logical symbols can all be combined to create complex sentences. For example, consider the PredL sentence
 
-`∀x(((mathematician(x) ∧ loves(Alex,x)) → ∃y((filmmaker(y) ∧ swims(y) ∧ hates(x,y)))))`.  
+$$∀x(((mathematician(x) ∧ loves(a,x)) → ∃y((filmmaker(y) ∧ swims(y) ∧ hates(x,y))))).$$  
 
-This represents the sentence "For all x, if x is a mathematician and Alex loves x, then there exists y such that y is a filmmaker, y swims, and x hates y". In other words, "Every mathematician that Alex loves hates a filmmaker that swims".
+This represents the sentence "For all $x$, if $x$ is a mathematician and Alex loves $x$, then there exists $y$ such that $y$ is a filmmaker, $y$ swims, and $x$ hates $y$". In other words, "Every mathematician that Alex loves hates a filmmaker that swims".
 
 ## Lambda Calculus
 
@@ -56,11 +56,11 @@ This project implements a unified semantic model for computing the types and lam
 
 To obtain the denotation of "Alex swims", we simply apply that of "Alex" to that of "swims", to obtain the lambda application
 $$[λP.P(a)] ([λx.swim(x)]).$$
-To simplify this expression, we then substitue $[λx.swim(x)]$ into the input variable $P$ of $[λP.P(a)]$, to obtain
+To simplify this expression, we then substitute $[λx.swim(x)]$ into the input variable $P$ of $[λP.P(a)]$, to obtain
 $$[λx.swim(x)] (a).$$
 Finally, we substitute $a$ into the input variable $x$ of the function, to obstain
 $$swim(a).$$
-In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventuall sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
+In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
 ## Toy Language
 This project automates the translation of natural language phrases into the formal language of predicate logic and lambda calculus, but translating the entire English language is outside its scope. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
