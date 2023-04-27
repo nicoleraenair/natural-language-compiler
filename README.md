@@ -2,15 +2,13 @@
 
 ## Description
 
-This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types).
+This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). It demonstrates the correctness of the semantic model developed in this [research paper]() and applies the theory to implement a linguistic modelling tool with practical pedagogical applications.
 
 Technical aspects: 
 - lexing and parsing using ocamllex and menhir
 - a novel compiler that automates the computation of lambda calculus types, denotations, and derivations for fundamental syntax structures
 - a lambda calculus interpreter that automates lambda reductions
 - a command-line user interface implemented using the Core library
-
-[Link to Paper]()
 
 ## Table of Contents
 - [Predicate Logic](#predicate-logic)
