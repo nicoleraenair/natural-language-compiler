@@ -30,7 +30,7 @@ Predicate logic is a formal logical language whose vocabulary includes individua
     - $swims(a) ∨ swims(b)$ represents "Alex swims or Bob swims", i.e. "Either Alex or Bob swims"
     - $old(a) → old(b)$ represents "If Alex is old, then Bob is old"
     - $¬knows(a,b)$ represents "Alex does not know Bob"
-- Qauntifiers include $∀$ (for all), $∃$ (there exists) and can be used with individual variables can be used to model more general statements as follows
+- Qauntifiers include $∀$ (for all) and $∃$ (there exists). They can be used with individual variables to model more general statements as follows
     - $∀x(swims(x))$ represents "For all $x$, $x$ swims", i.e. "Everyone swims"
     - $∃y(knows(b,y))$ represents "There exists $y$ such that Bob knows $y$", i.e. "Bob knows someone"
     - $∀p(∃q(knows(p,q)))$ represents "For all $p$, there exists $q$ such that $p$ knows $q$", i.e. "Everyone knows someone"
@@ -124,7 +124,7 @@ eval $(opam env)
 
 5. Finally, to run the program, either
 - clone this repo and run with `dune` or `make run`, OR
-- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1Z__ZGe8doHst5BGAcg2UhfVKyjmrAbcp/view?usp=sharing) and run with `ocamlrun main.bc`.
+- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1K6syhZqJoCz_xaSyLtcZPdHQy7LI475X/view?usp=sharing) and run with `ocamlrun main.bc`.
 
 ## Usage
 
