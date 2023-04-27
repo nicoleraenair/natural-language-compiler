@@ -98,7 +98,7 @@ The following table lists the various phrases included in the language and examp
 | verb phrase | VP | IV: sleeps <br> TV NP: teaches Caleb <br> is ADJ: is grumpy <br> is a CN: is a filmmaker <br> is a RCN: is a lawyer that eats |
 | sentence | S | NP VP: Alex swims |
 
-Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
+Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`. The compiler is also highly extensible, and can be modified easily to add words to the toy vocabulary (eg. adding different names or common nouns) or expand the language to include more syntactic structures (eg. conjunctions, negation, pronouns, modal verbs, punctuation, prepositions, etc.).
 
 ## Implementation
 ### TODO
