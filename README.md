@@ -142,8 +142,5 @@ When a phrase is entered, the lambda calculus denotation as well as the semantic
 Entering a phrase that violates the syntactic rules of the toy language or uses words that are either misspelled or not in the toy language will produce the corresponding error messages (with the latter case taking precedence, so a synactically nonsensical phrase with a misspelled word will produce an invalid word error):  
 <img width="697" alt="Screen Shot 2023-04-26 at 6 29 02 PM" src="https://user-images.githubusercontent.com/63452077/234716842-2240337e-b0e5-4c4d-ae06-37e93655442d.png">  
 In addition to full sentences, individual words or phrases can also be translated:  
-<img width="697" alt="Screen Shot 2023-04-26 at 6 39 02 PM" src="https://user-images.githubusercontent.com/63452077/234717916-e724497d-224e-40c8-bee1-1da8d143a779.png">  
-
-## Extensions
-### TODO
+<img width="697" alt="Screen Shot 2023-04-26 at 6 39 02 PM" src="https://user-images.githubusercontent.com/63452077/234717916-e724497d-224e-40c8-bee1-1da8d143a779.png">
 
