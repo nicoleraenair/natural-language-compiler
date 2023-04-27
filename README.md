@@ -45,10 +45,10 @@ This represents the sentence "For all $x$, if $x$ is a mathematician and Alex lo
 ## Lambda Calculus
 
 Predicate logic allows us to model complete sentences, but we can use the lambda calculus to model even more types of phrases. The syntax of the lambda calculus includes all predicate logic sentences as well as new constructions called lambda abstractions and applications:
-- Abstractions are of the form [$λx.e$], representing a function that takes $x$ as an input and outputs $e$.
+- Abstractions are of the form $[λx.e]$, representing a function that takes $x$ as an input and outputs $e$.
 - Applications are of the form $P (Q)$, representing the application of the function $P$ to the input $Q$.
 
-For example, the abstraction [$λx.x+1$] represents a function that takes in a number and returns a number (so its type can be thought of as <number, number>), and the application $[λx.x+1] (2)$ applies the function to $2$, simplifying to $2 + 1 = 3$. 
+For example, the abstraction $[λx.x+1]$ represents a function that takes in a number and returns a number (so its type can be thought of as <number, number>), and the application $[λx.x+1] (2)$ applies the function to $2$, simplifying to $2 + 1 = 3$. 
 
 This project implements a unified semantic model for computing the types and lambda calculus denotations for natural language phrases. As a simple illustration of how lambda calculus can be applied to natural language semantics, consider the sentence "Alex swims". We can represent each word of this sentence as lambda abstractions as follows:
 - "Alex" -> $[λP.P(a)]$
