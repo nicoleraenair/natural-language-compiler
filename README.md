@@ -2,15 +2,18 @@
 
 ## Description
 
-This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). 
+This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). It demonstrates the correctness of the semantic model developed in this [research paper]() and applies the theory to implement a linguistic modelling tool with practical pedagogical applications.
 
-[Link to Paper]()
+Technical aspects: 
+- lexing and parsing using ocamllex and menhir
+- a novel compiler that automates the computation of lambda calculus types, denotations, and derivations for fundamental syntax structures
+- a lambda calculus interpreter that automates lambda reductions
+- a command-line user interface implemented using the Core library
 
 ## Table of Contents
 - [Predicate Logic](#predicate-logic)
 - [Lambda Calculus](#lambda-calculus)
 - [Toy Language](#toy-language)
-- [Implementation](#implementation)
 - [Installation](#installation)
 - [Usage](#usage)
 
@@ -45,8 +48,8 @@ This represents the sentence "For all $x$, if $x$ is a mathematician and Alex lo
 ## Lambda Calculus
 
 Predicate logic allows us to model complete sentences, but we can use the lambda calculus to model even more types of phrases. The syntax of the lambda calculus includes all predicate logic sentences as well as new constructions called lambda abstractions and applications:
-- Abstractions are of the form $[λx.e]$, representing a function that takes $x$ as an input and outputs $e$.
-- Applications are of the form $P (Q)$, representing the application of the function $P$ to the input $Q$.
+- Abstractions are of the form $[λx.e]$, representing a function that takes $x$ as an input and outputs $e$
+- Applications are of the form $P (Q)$, representing the application of the function $P$ to the input $Q$
 
 For example, the abstraction $[λx.x+1]$ represents a function that takes in a number and returns a number (so its type can be thought of as <number, number>), and the application $[λx.x+1] (2)$ applies the function to $2$, simplifying to $2 + 1 = 3$. 
 
@@ -61,10 +64,9 @@ $$[λx.swim(x)] (a).$$
 Finally, we substitute $a$ into the input variable $x$ of the function, to obtain
 $$swim(a).$$
 Hence "Alex swims" is denoted by $swim(a)$. We can also determine the types of these denotations as follows:
-- "Alex swims" is represented by a predicate logic sentence, so it has type $t$
-- "swims" is represented by the function $[λx.swim(x)]$ that takes in an entity ($x$) and produces a predicate logic sentence ($swims(x)$), so it has type $<e,t>$ denoting a function with an entity input and sentence output
-- "Alex" is represented by the function $[λP.P(a)]$ that takes in a function $P$ of type $<e,t>$ (as shown above) and produces a predicate logic sentence ($P(a)$), so it has type $<<e,t>,t>$ denoting a function with an input of type $<e,t>$ and output of type $t$
-
+- "Alex swims" is represented by a predicate logic complete sentence, so it has type $t$
+- "swims" is represented by the function $[λx.swim(x)]$ that takes in an entity $x$ and produces a predicate logic sentence $swims(x)$ of type $t$ (as stated above), so it has type $< e, t >$ denoting a function with an $e$ (entity) input and $t$ (sentence) output
+- "Alex" is represented by the function $[λP.P(a)]$ that takes in a function $P$ of type $< e, t >$ (as shown above) and produces a predicate logic sentence $P(a)$, so it has type $<< e, t >, t >$ denoting a function with an input of type $< e, t >$ and output of type $t$
 
 In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
@@ -99,13 +101,7 @@ The following table lists the various phrases included in the language and examp
 | verb phrase | VP | IV: sleeps <br> TV NP: teaches Caleb <br> is ADJ: is grumpy <br> is a CN: is a filmmaker <br> is a RCN: is a lawyer that eats |
 | sentence | S | NP VP: Alex swims |
 
-Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`.
-
-## Implementation
-### TODO
-- ocaml, lexing and parsing with ocamllex and menhir, uses core library
-- explain lexing, parsing, language asts, compiling, lambda ast, lambda calculus interpreter for reduction, various pretty printers, command-line interface
-- highlight skills learned + implementation details for a nontechnical audience
+Observe that this is an infinitely large language, and that we can construct arbitrarily long and complex phrases, such as `Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims`. The compiler is also highly extensible, and can be modified easily to add words to the toy vocabulary (eg. adding different names or common nouns) or expand the language to include more syntactic structures (eg. conjunctions, negation, pronouns, modal verbs, punctuation, prepositions, etc.).
 
 ## Installation
 
@@ -143,8 +139,5 @@ When a phrase is entered, the lambda calculus denotation as well as the semantic
 Entering a phrase that violates the syntactic rules of the toy language or uses words that are either misspelled or not in the toy language will produce the corresponding error messages (with the latter case taking precedence, so a synactically nonsensical phrase with a misspelled word will produce an invalid word error):  
 <img width="697" alt="Screen Shot 2023-04-26 at 6 29 02 PM" src="https://user-images.githubusercontent.com/63452077/234716842-2240337e-b0e5-4c4d-ae06-37e93655442d.png">  
 In addition to full sentences, individual words or phrases can also be translated:  
-<img width="697" alt="Screen Shot 2023-04-26 at 6 39 02 PM" src="https://user-images.githubusercontent.com/63452077/234717916-e724497d-224e-40c8-bee1-1da8d143a779.png">  
-
-## Extensions
-### TODO
+<img width="697" alt="Screen Shot 2023-04-26 at 6 39 02 PM" src="https://user-images.githubusercontent.com/63452077/234717916-e724497d-224e-40c8-bee1-1da8d143a779.png">
 
