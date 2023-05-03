@@ -38,8 +38,8 @@ let compile_det (det : determiner) : Lambda.expr =
 let rec compile_phrase (p : Asts.phrase) : Lambda.expr = 
   match p with
   | S (np, vp) -> Application (compile_phrase np, compile_phrase vp)
-  | PNP pn -> let param = fresh_name "P" in 
-    Lambda (param, Application (Var param, compile_phrase pn))
+  | PN pn -> let param = fresh_name "P" in 
+    Lambda (param, Application (Var param, Var (string_of_pn pn)))
   | CNP (det, cn) -> Application (compile_phrase det, compile_phrase cn)
   | IVP iv -> let x = fresh_name "x" in
     Lambda (x, Predicate(string_of_iv iv, [Var x]))
@@ -60,7 +60,6 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
     let y = fresh_name "x" in
     Lambda(x, Conjunction(Application(compile_phrase cn, Var x), Application (compile_phrase np, Lambda (y, Application (
       Application (compile_phrase tv, Var x), Var y)))))
-  | PN pn -> Var (string_of_pn pn)
   | ISNVP n -> compile_phrase n
   | ADJ adj -> let x = fresh_name "x" in Lambda (x, Predicate(string_of_adj adj, [Var x]))
   | ADJCN (adj, cn) -> let x = fresh_name "x" in

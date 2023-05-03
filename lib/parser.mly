@@ -43,7 +43,6 @@ input:
   | tv = transitive_verb; EOF { tv }
   | det = determiner; EOF { det }
   | cn = common_noun; EOF { cn }
-  | pn = proper_noun; EOF { pn }
   | adj = adjective; EOF { adj }
   ;
 
@@ -60,7 +59,7 @@ verb_phrase:
   ;
 
 noun_phrase:
-  | pn = proper_noun { PNP pn }
+  | pn = proper_noun { pn }
   | det = determiner; cn = common_noun { CNP (det, cn) }
   | det = determiner; rcn = relative_common_noun { CNP (det, rcn) }
   ;
