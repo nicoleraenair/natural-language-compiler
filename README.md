@@ -112,7 +112,7 @@ bash -c "sh <(curl -fsSL https://raw.githubusercontent.com/ocaml/opam/master/she
 
 2. To initialize opam, run `opam init` and enter `y` when prompted (you should be asked a question similar to `Do you want opam to modify ~/.zshrc? [N/y/f]`).
 
-3. To install the OCaml compiler, run both of the following:
+3. To set up the OCaml compiler, run both of the following:
 ```bash
 opam switch create 4.14.1
 eval $(opam env)
