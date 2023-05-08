@@ -33,7 +33,7 @@ Predicate logic is a formal logical language whose vocabulary includes individua
     - $swims(a) ∨ swims(b)$ represents "Alex swims or Bob swims", i.e. "Either Alex or Bob swims"
     - $old(a) → old(b)$ represents "If Alex is old, then Bob is old"
     - $¬knows(a,b)$ represents "Alex does not know Bob"
-- Qauntifiers include $∀$ (for all) and $∃$ (there exists). They can be used with individual variables to model more general statements as follows
+- Quantifiers include $∀$ (for all) and $∃$ (there exists). They can be used with individual variables to model more general statements as follows
     - $∀x(swims(x))$ represents "For all $x$, $x$ swims", i.e. "Everyone swims"
     - $∃y(knows(b,y))$ represents "There exists $y$ such that Bob knows $y$", i.e. "Bob knows someone"
     - $∀p(∃q(knows(p,q)))$ represents "For all $p$, there exists $q$ such that $p$ knows $q$", i.e. "Everyone knows someone"
