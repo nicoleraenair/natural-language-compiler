@@ -13,8 +13,8 @@ type expr =
 let rec string_of_lambda (l : expr) : string = 
   match l with
   | Var x -> x
-  | Lambda (x, e) -> "λ" ^ x ^ "." ^ (string_of_lambda e)
-  | Application (l1, l2) -> "[" ^ string_of_lambda l1 ^ "]" ^ "(" ^ (string_of_lambda l2) ^ ")"
+  | Lambda (x, e) -> "[λ" ^ x ^ "." ^ (string_of_lambda e) ^ "]"
+  | Application (l1, l2) -> string_of_lambda l1 ^ "(" ^ (string_of_lambda l2) ^ ")"
   | Conjunction (l1, l2) -> "(" ^ string_of_lambda l1 ^ " ∧ " ^ (string_of_lambda l2) ^ ")"
   | Disjunction (l1, l2) -> "(" ^ string_of_lambda l1 ^ " v " ^ (string_of_lambda l2) ^ ")"
   | Negation l1 -> "(¬" ^ string_of_lambda l1 ^ ")"
