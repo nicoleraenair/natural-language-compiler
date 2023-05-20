@@ -126,7 +126,7 @@ eval $(opam env)
 
 5. Finally, to run the program, either
 - clone this repo and run with `dune` or `make run`, OR
-- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1K6syhZqJoCz_xaSyLtcZPdHQy7LI475X/view?usp=sharing) and run with `ocamlrun main.bc`.
+- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1y8UQh5ACG_QXLfN_Lte-rAPLagcWNTTo/view?usp=sharing) and run with `ocamlrun main.bc`.
 
 ## Usage
 
