@@ -2,7 +2,7 @@
 
 ## Description
 
-This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). It demonstrates the correctness of the semantic model developed in this [research paper]() and applies the theory to implement a linguistic modelling tool with practical pedagogical applications.
+This natural language compiler translates words, phrases, and sentences from a subset of English into their lambda calculus and predicate logic representations (and determines their semantic types). It demonstrates the correctness of this semantic model and applies the theory to implement a linguistic modelling tool with practical pedagogical applications.
 
 Technical aspects: 
 - lexing and parsing using ocamllex and menhir
@@ -64,11 +64,11 @@ $$[λx.swim(x)] (a).$$
 Finally, we substitute $a$ into the input variable $x$ of the function, to obtain
 $$swim(a).$$
 Hence "Alex swims" is denoted by $swim(a)$. We can also determine the types of these denotations as follows:
-- "Alex swims" is represented by a predicate logic complete sentence, so it has type $t$
+- "Alex swims" is represented by a predicate logic complete sentence, so it has type $t$, which stands for truth value
 - "swims" is represented by the function $[λx.swim(x)]$ that takes in an entity $x$ and produces a predicate logic sentence $swims(x)$ of type $t$ (as stated above), so it has type $< e, t >$ denoting a function with an $e$ (entity) input and $t$ (sentence) output
 - "Alex" is represented by the function $[λP.P(a)]$ that takes in a function $P$ of type $< e, t >$ (as shown above) and produces a predicate logic sentence $P(a)$, so it has type $<< e, t >, t >$ denoting a function with an input of type $< e, t >$ and output of type $t$
 
-In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see the paper linked in the project description (or experiment with the compiler to see how different phrases are represented with lambda calculus).
+In this way, lambda calculus allows us to determine logical representations of intermediate words and phrases, as well combine them in order to represent compound phrases and eventually sentences. For a full specification of this model, see [this paper](https://drive.google.com/file/d/1L3plKgKOeGJ1Z55OFhM103Pityzc1ZTa/view?usp=sharing) (or experiment with the compiler to see how different phrases are represented with lambda calculus).
 
 ## Toy Language
 This project automates the translation of natural language phrases into the formal language of predicate logic and lambda calculus, but translating the entire English language is outside its scope. Instead, we will work with a small subset of English that includes proper nouns, common nouns, determiners, relative clauses, intransitive verbs, transitive verbs, and adjectives. This toy language is formally specified by the following [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar):
@@ -126,7 +126,7 @@ eval $(opam env)
 
 5. Finally, to run the program, either
 - clone this repo and run with `dune` or `make run`, OR
-- download a bytecode executable version of this project [here](https://drive.google.com/file/d/1y8UQh5ACG_QXLfN_Lte-rAPLagcWNTTo/view?usp=sharing) and run with `ocamlrun main.bc`.
+- download a bytecode executable version of this project [here]() and run with `ocamlrun main.bc`.
 
 ## Usage
 
