@@ -22,4 +22,3 @@ let rec string_of_lambda (l : expr) : string =
   | Exists (x, e) -> "∃" ^ x ^ "(" ^ string_of_lambda e ^ ")"
   | Implication (l1, l2) -> "(" ^ string_of_lambda l1 ^ " → " ^ (string_of_lambda l2) ^ ")"
   | Predicate (p, indivs) -> p ^ "(" ^ String.concat "," (List.map string_of_lambda indivs) ^ ")"
-;;

@@ -10,10 +10,8 @@ let rec string_of_type (t : ty) : string =
   | E -> "e"
   | T -> "t"
   | F (x, y) -> "⟨" ^ string_of_type x ^ "," ^ string_of_type y ^ "⟩"
-;;
 
-let type_of (p : phrase) : string =
-  string_of_type (
+let type_of (p : phrase) : ty =
     match p with
     | S (_, _) -> T
     | PN _ | CNP (_, _) -> F(F(E,T),T)
@@ -21,5 +19,3 @@ let type_of (p : phrase) : string =
     | DET _ -> F(F(E,T),F(F(E,T), T))
     | CN _ | RCN (_, _) | TRCN (_, _, _) |ADJCN (_, _) | ADJ _-> F(E,T)
     | TV _ -> F(E,F(E,T))
-  )
-;;

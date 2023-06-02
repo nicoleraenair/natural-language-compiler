@@ -19,7 +19,6 @@ let fresh_name (prefix : string) : string =
     _pprime := n ^ (if p = 25 then "'" else "");
     (Char.escaped (Char.chr (((p+15)mod 26) + 65))) ^ n
   | _ -> failwith "Invalid variable type"
-;;
 
 let compile_det (det : determiner) : Lambda.expr = 
   let p1 = fresh_name "P" in
@@ -33,7 +32,6 @@ let compile_det (det : determiner) : Lambda.expr =
   | No ->
     Lambda (p1, Lambda (p2, ForAll (x, Implication(
       (Application (Var p1, Var x), Negation(Application (Var p2, Var x)))))))
-;;
 
 let rec compile_phrase (p : Asts.phrase) : Lambda.expr = 
   match p with
@@ -65,7 +63,6 @@ let rec compile_phrase (p : Asts.phrase) : Lambda.expr =
   | ADJCN (adj, cn) -> let x = fresh_name "x" in
     Lambda(x, Conjunction(Application(compile_phrase adj, Var x), Application(compile_phrase cn, Var x)))
   | ISADJVP adj -> compile_phrase adj
-;;
 
 let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.expr = 
   match (e : Lambda.expr) with
@@ -79,7 +76,6 @@ let rec substitute (var: string) (value: Lambda.expr) (e: Lambda.expr): Lambda.e
   | ForAll (x, body) -> if x = var then e else ForAll (x, substitute var value body)
   | Exists (x, body) -> if x = var then e else Exists (x, substitute var value body)
   | Predicate (pred, vars) -> Predicate(pred, List.map (substitute var value) vars)
-;;
 
 let rec reduce (e : Lambda.expr) : Lambda.expr = 
   match (e : Lambda.expr) with
@@ -95,4 +91,3 @@ let rec reduce (e : Lambda.expr) : Lambda.expr =
   | Application (e1, e2) -> (match (reduce e1) with 
   | Lambda (x, b) -> reduce (substitute x (reduce e2) b)
   | _ -> Application (reduce e1, reduce e2))
-;;
