@@ -88,19 +88,22 @@ let string_of_adj (adj : adjective) : string =
 let string_of_det (det : determiner) : string = 
   match det with A -> "a" | Every -> "every" | Some -> "some" | No -> "no"
 
-let rec string_of_phrase (p : phrase) : string = 
+let rec string_of_phrase (p : phrase) : string =
+  String.concat ""
+  begin
   match p with
-  | S (np, vp) -> "S(" ^ string_of_phrase np ^ "," ^ string_of_phrase vp ^ ")"
-  | CNP (det, cn) -> "CNP(" ^ string_of_phrase det ^ "," ^ string_of_phrase cn ^ ")"
-  | PN pn -> "PN(" ^ string_of_pn pn ^ ")"
-  | DET det -> "DET(" ^ string_of_det det ^ ")"
-  | CN cn -> "CN(" ^ string_of_cn cn ^ ")"
-  | IVP iv -> "IVP(" ^ string_of_iv iv ^ ")"
-  | TVP (tv, np) -> "TVP(" ^ string_of_phrase tv ^ "," ^ string_of_phrase np ^ ")"
-  | TV tv -> "TV(" ^ string_of_tv tv ^ ")"
-  | RCN (cn, vp) -> "RCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase vp ^ ")"
-  | TRCN (cn, np, tv) -> "TRCN(" ^ string_of_phrase cn ^ "," ^ string_of_phrase np ^ "," ^ string_of_phrase tv ^ ")"
-  | ADJ adj -> "ADJ(" ^ string_of_adj adj ^ ")"
-  | ADJCN (adj, n) -> "ADJCN(" ^ string_of_phrase adj ^ "," ^ string_of_phrase n ^ ")"
-  | ISNVP n -> "ISNVP(" ^ string_of_phrase n ^ ")"
-  | ISADJVP adj -> "ISADJVP(" ^ string_of_phrase adj ^ ")"
+  | S (np, vp) -> ["S("; string_of_phrase np; ","; string_of_phrase vp; ")"]
+  | CNP (det, cn) -> ["CNP("; string_of_phrase det; ","; string_of_phrase cn; ")"]
+  | PN pn -> ["PN("; string_of_pn pn; ")"]
+  | DET det -> ["DET("; string_of_det det; ")"]
+  | CN cn -> ["CN("; string_of_cn cn; ")"]
+  | IVP iv -> ["IVP("; string_of_iv iv; ")"]
+  | TVP (tv, np) -> ["TVP("; string_of_phrase tv; ","; string_of_phrase np; ")"]
+  | TV tv -> ["TV("; string_of_tv tv; ")"]
+  | RCN (cn, vp) -> ["RCN("; string_of_phrase cn; ","; string_of_phrase vp; ")"]
+  | TRCN (cn, np, tv) -> ["TRCN("; string_of_phrase cn; ","; string_of_phrase np; ","; string_of_phrase tv; ")"]
+  | ADJ adj -> ["ADJ("; string_of_adj adj; ")"]
+  | ADJCN (adj, n) -> ["ADJCN("; string_of_phrase adj; ","; string_of_phrase n; ")"]
+  | ISNVP n -> ["ISNVP("; string_of_phrase n; ")"]
+  | ISADJVP adj -> ["ISADJVP("; string_of_phrase adj; ")"]
+  end

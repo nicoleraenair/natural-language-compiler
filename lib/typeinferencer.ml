@@ -9,7 +9,7 @@ let rec string_of_type (t : ty) : string =
   match t with 
   | E -> "e"
   | T -> "t"
-  | F (x, y) -> "⟨" ^ string_of_type x ^ "," ^ string_of_type y ^ "⟩"
+  | F (x, y) -> String.concat "" ["⟨"; string_of_type x; ","; string_of_type y; "⟩"]
 
 let type_of (p : phrase) : ty =
     match p with

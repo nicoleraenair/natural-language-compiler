@@ -2,13 +2,12 @@ open Compilib
 open Core
 
 let parse (phrase : string) : Asts.phrase =
-  let lexbuf = Lexing.from_string (String.lowercase phrase) in
-  Parser.input Lexer.read lexbuf
+  phrase |> String.lowercase |> Lexing.from_string |> Parser.input Lexer.read
 
 let translate (ast : Asts.phrase) =
-  let lambda_expr =  Compiler.reduce (Compiler.compile_phrase ast) in
+  let lambda_expr =  Compiler.reduce @@ Compiler.compile_phrase ast in
   printf "Denotation: %s\n" (Lambda.string_of_lambda lambda_expr);
-  printf "Semantic Type: %s\n" (Typeinferencer.string_of_type (Typeinferencer.type_of ast))
+  printf "Semantic Type: %s\n" (Typeinferencer.string_of_type @@ Typeinferencer.type_of ast)
 
 let print_grammar () = 
   printf "Here is the context-free grammar for the toy language supported by this tool:\n\n\tS -> NP VP\n\tNP -> PN | DET CN | DET RCN\n\tVP -> IV | TV NP | is ADJ | is a CN | is a RCN\n\tCN -> mathematician | filmmaker | lawyer | engineer | ADJ CN\n\tRCN -> CN that VP | CN that NP TV\n\tIV -> studies | sleeps | eats | swims\n\tTV -> loves | hates | teaches | knows\n\tADJ -> clever | sleepy | funny | grumpy\n\tPN -> Alex | Caleb | Christie | Lauren\n\tDET -> a | every | some | no\n\nTry entering a sentence like: \"Every funny clever mathematician that Alex loves hates a filmmaker that is a lawyer that swims\"
